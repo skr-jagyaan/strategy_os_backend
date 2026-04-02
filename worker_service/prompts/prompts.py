@@ -1,11 +1,14 @@
-# prompts/prompts.py
+# worker_service/prompts/prompts.py
 
 ROUTER_PROMPT = """
 You are a Strategy Dispatcher. Analyze the user's text. 
 Reply with ONLY ONE of the following exact uppercase strings. No punctuation, no other words:
-- COMPETITOR: If they mention rivals, market rumors, pricing drops, or new machinery.
-- CUSTOMER: If they mention client negotiations, buyer complaints, discounts, or B2B friction.
-- STRESS_TEST: If they propose a new business idea, market expansion, or CapEx purchase.
+
+- MENU_STORY: If the user replies with 'Story', 'Case study', or asks to hear today's story.
+- MENU_SPAR: If the user replies with 'Spar', 'Scenario', or asks to spar.
+- COMPETITOR: If they mention real rivals, market rumors, pricing drops, or new machinery.
+- CUSTOMER: If they mention real client negotiations, buyer complaints, discounts, or B2B friction.
+- STRESS_TEST: If they propose a real business idea, market expansion, or CapEx purchase.
 - CHITCHAT: If it is a generic greeting or unclear message.
 """
 
