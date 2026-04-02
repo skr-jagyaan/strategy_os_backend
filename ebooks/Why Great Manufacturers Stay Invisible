@@ -1,0 +1,675 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  BookOpen, 
+  ChevronRight, 
+  ChevronLeft, 
+  Menu, 
+  X, 
+  Moon, 
+  Sun, 
+  CheckCircle2, 
+  AlertCircle,
+  Lightbulb,
+  Image as ImageIcon
+} from 'lucide-react';
+
+// --- DATA STRUCTURE: The Book Content ---
+// To keep the code maintainable, content is structured into sections and blocks.
+const bookData = [
+  {
+    id: "cover",
+    title: "Cover",
+    type: "cover"
+  },
+  {
+    id: "read-this-first",
+    title: "Read This First",
+    type: "chapter",
+    blocks: [
+      { type: "h1", text: "READ THIS BEFORE YOU TURN ANOTHER PAGE." },
+      { type: "p", text: "If you are holding this book, you are likely a brilliant engineer or a deeply committed founder who built a manufacturing business from the ground up. You have invested in precise machines, built a loyal workforce, and maintain excellent quality." },
+      { type: "p", text: "But right now, you might also be utterly exhausted." },
+      { type: "p", text: "Despite your 18-hour days and constant operational improvements, your revenue has likely hit a stubborn plateau. You are surviving on volume, but you are not growing in value. You find yourself trapped in a daily knife fight over a few paise, trading rupees with corporate buyers who view you as completely replaceable." },
+      { type: "p", text: "This book is going to challenge everything you believe about how to grow a manufacturing company." },
+      { type: "h3", text: "In the following pages, you will discover:" },
+      { type: "ul", items: [
+        "The Invisibility Problem: Why doing a little bit of everything for everyone ensures that your company is famous for absolutely nothing.",
+        "The Spreadsheet Reality: How modern procurement strips away your unique value and reduces your life's work to a single row on an Excel spreadsheet, where orders automatically go to the lowest bidder.",
+        "The Quality Illusion: The brutal truth that your world-class quality and on-time delivery are not strategic advantages. They are simply 'Operating Imperatives'—the bare minimum required just to be invited to quote.",
+        "The Marketing Mirage: Why spending a fortune on a glossy new website and a fresh logo will never fix a broken, commoditized business model."
+      ]},
+      { type: "p", text: "This is not a book of motivational slogans. It is a field manual for escaping the commodity trap." },
+      { type: "p", text: "If you are ready to stop competing purely on price and hard work, and ready to transition from being an invisible vendor to a highly recognized, premium brand in your category, you are in the right place." },
+      { type: "quote", text: "Hard work scales the chaos; only strategy scales the profit." }
+    ]
+  },
+  {
+    id: "preface",
+    title: "Preface",
+    type: "chapter",
+    blocks: [
+      { type: "h1", text: "Preface" },
+      { type: "p", text: "In my career, I haven’t just observed the engineering and manufacturing world from the sidelines—I have been in the trenches negotiating it." },
+      { type: "p", text: "During countless hours of Joint Venture discussions and facility visits with institutions like ISRO and IISc, I sat across the table from some of the brightest minds in the country. In those labs, I saw firsthand what absolute technical perfection looks like. I learned the rigorous discipline required to translate complex, cutting-edge science into real-world utility." },
+      { type: "p", text: "I took that same approach to the boardroom tables of industrial giants like L&T and GMR. Operating as a prospective JV partner, I learned exactly how the titans play the game. They don't just focus on bending metal or pouring concrete. They understand how to structure massive contracts, position themselves for absolute leverage, and drive revenue at scale. They understand that engineering is a tool, but strategy is the engine." },
+      { type: "p", text: "But when I stepped into the boardrooms of popular MSMEs across India for negotiations, I saw a completely different, tragic reality." },
+      { type: "p", text: "I would walk onto their factory floors and meet founders who possessed the deep tech understanding of a scientist. They were brilliant, driven men and women working 18-hour days to deliver flawless quality to their clients." },
+      { type: "p", text: "Yet, they were exhausted. Their revenue had flatlined, and their margins were being squeezed to death. Despite their incredible hard work, they lacked the commercial aggression and strategic architecture of the giants. Because of this, they were trapped—treated as invisible, replaceable vendors by the very corporations they were supplying." },
+      { type: "p", text: "That massive gap is why I stepped into strategy, and it is exactly why I wrote this book. My mission is about fixing that exact disconnect. I help manufacturing founders combine their hard-earned engineering skills with the strategic leverage they need to protect their margins and command respect." },
+      { type: "p", text: "You already know how to make world-class products. You already know how to work hard. This book is designed to teach you how to structure your business so the market is finally forced to pay you what you are actually worth." },
+      { type: "p", text: "It is time to stop taking whatever orders fall into your lap. It is time to take absolute control of your market, your margins, and your future." }
+    ]
+  },
+  {
+    id: "intro",
+    title: "Introduction: The Invisible Problem",
+    type: "chapter",
+    blocks: [
+      { type: "h1", text: "Introduction\nThe Invisible Problem" },
+      { type: "p", text: "The first thing that hits you when you walk onto a well-run factory floor is the smell. It is a distinct, sweet-and-metallic tang of cutting fluid mixed with warm machine oil." },
+      { type: "p", text: "Picture a precision machining unit in Pune. The air hums with the high-pitched whine of CNC lathes cutting through hardened steel. Yellow safety lines are neatly painted on the epoxy floor. The operators are focused, the tool crib is immaculately organised, and the dispatch area is packed with wooden crates ready to ship." },
+      { type: "p", text: "The founder of this company—let us call him Rajesh—is a brilliant engineer. He started the business twenty-two years ago with a single second-hand milling machine in a tiny shed. Today, he manages a state-of-the-art facility spanning thirty thousand square feet." },
+      { type: "p", text: "On paper, Rajesh has built exactly what a manufacturing founder is supposed to build. He has incredibly precise, expensive machines; a team of experienced, loyal workers; good relationships with his tier-one automotive customers; and a steady, predictable flow of orders." },
+      { type: "p", text: "Yet, as he sits in his glass-walled cabin one evening, staring at the yearly financials while the rhythmic thud of a power press vibrates through the floorboards, something is deeply bothering him." },
+      { type: "p", text: "His revenue has stayed in the exact same range—hovering right around the ₹25 Crore mark—for almost five years. Every year, Rajesh works harder. He arrives at the plant at 8:00 AM and rarely leaves before the second shift clocks in. Every year, the business improves operationally. They reduce scrap rates, optimise cycle times, and implement strict quality management systems." },
+      { type: "p", text: "Yet, growth remains stubbornly flat. His margins are constantly under pressure from buyers who demand year-on-year price reductions. He is utterly exhausted." },
+      { type: "quote", text: "We are doing everything right. My quality is 99.8% defect-free. We never miss a delivery schedule. But somehow, the business is not breaking through. We are just surviving on volume, not growing in value." },
+      { type: "h2", text: "The Marketing Mirage" },
+      { type: "p", text: "When growth stalls, many owners naturally assume the problem is how they are presenting themselves to the world. They believe they have a marketing problem." },
+      { type: "p", text: "They look at their outdated website, their ten-year-old logo, and the dusty catalogues sitting in their reception area, and they think, 'If we just looked more professional, we would get better clients.'" },
+      { type: "p", text: "So, they spend the money. They hire an agency. They print the new brochures. And what happens? Very little." },
+      { type: "p", text: "Perhaps they pick up a few minor orders, but the fundamental trajectory of the business does not change. The leads from the exhibition turn out to be price-shoppers looking for the cheapest vendor. The glossy website looks great, but it says the exact same things as every other competitor’s website: 'We provide high-quality components, on-time delivery, and excellent customer service.'" },
+      { type: "p", text: "They quickly realise that putting a fresh coat of paint on the company does not change how the market values them." },
+      { type: "h2", text: "The True Diagnosis" },
+      { type: "p", text: "This business is not invisible because of marketing. It is invisible because it lacks strategic focus." },
+      { type: "p", text: "Over the years, to keep the machines running and people employed, founders take on almost any job that fits their equipment. They make parts for tractors, components for textile machinery, and fittings for the oil and gas sector. They do a little bit of everything for everyone." },
+      { type: "p", text: "Because they do everything, they are not famous for anything." },
+      { type: "figure", title: "The Sea of Sameness", visual: "A sprawling, isometric view of an industrial estate. Dozens of identical factory sheds with identical smoke stacks. In the middle is one factory glowing or highlighted in a distinct color, representing the 'Brand.'", caption: "Hard work makes you busy. A lack of strategy makes you invisible in a sea of capable competitors." },
+      { type: "p", text: "When a buyer needs a generic part machined, they call. But when they have a complex, high-value problem to solve in a specific application, they don't think of the generalist. They seek out a specialist. And they pay that specialist a premium." },
+      { type: "p", text: "Strategic focus is something most manufacturing businesses never consciously design. They evolve by accident. They confuse operational excellence—being good at making things—with strategic positioning—being uniquely valuable to a specific market." }
+    ]
+  },
+  {
+    id: "ch1",
+    title: "Chapter 1: The 18-Hour Founder",
+    type: "chapter",
+    blocks: [
+      { type: "part", text: "Part 1: The Hard Work Trap" },
+      { type: "h1", text: "Chapter 1\nThe 18-Hour Founder" },
+      { type: "p", text: "Most manufacturing businesses begin the exact same way. A highly skilled professional or an ambitious engineer decides to strike out on their own. They rent a small industrial shed, buy a couple of second-hand machines, and start knocking on doors for orders." },
+      { type: "p", text: "In those early years, survival depends entirely on the founder. They handle absolutely everything. They negotiate raw material prices, supervise production runs, calculate quotations, and jump onto the shop floor to solve quality issues." },
+      { type: "p", text: "And because the founder is capable, driven, and willing to work eighteen-hour days, the business actually begins to grow. But something subtle and dangerous happens during this stage. The business becomes entirely, structurally dependent on the founder's personal involvement." },
+      { type: "h2", text: "The Anatomy of the Trap" },
+      { type: "p", text: "Let us look at a typical day for a founder we will call Vikram. Vikram runs a successful injection moulding plant in Faridabad." },
+      { type: "ul", items: [
+        "At 7:30 AM, his phone buzzes. The night shift supervisor needs him to approve a tool adjustment.",
+        "At 10:00 AM, a key customer calls to negotiate a discount. The customer insists on speaking 'only to the boss.'",
+        "At 2:00 PM, a supplier is waiting. The accounts team has prepared the cheque, but cannot release it because Vikram has to sign it.",
+        "At 5:00 PM, a new RFQ comes in. The engineering team has done basic costing, but Vikram has to personally review it."
+      ]},
+      { type: "p", text: "Over time, the founder becomes the absolute centre of every important decision. Nothing major—and often nothing minor—moves without the founder's explicit blessing. This is what we call the Hero Founder Trap." },
+      { type: "figure", title: "The Founder Bottleneck", visual: "An hourglass or a funnel. Dozens of arrows are pouring in (labelled: Sales, Operations, HR, Purchasing, Quality). In the narrow, choked center is a single figure labelled 'The 18-Hour Founder.' At the bottom, only a tiny trickle of progress comes out.", caption: "You cannot scale a business if every decision has to fit through one person’s brain." },
+      { type: "h2", text: "The Psychology of Control" },
+      { type: "p", text: "Why do smart, capable founders let this happen? It is rarely about a lack of intelligence; it is almost always about psychology." },
+      { type: "ul", items: [
+        "The 'Nobody Cares Like I Do' Myth: Because it is the founder's capital on the line, they believe nobody else can care enough to get details right.",
+        "The Trauma of Past Mistakes: Almost every seasoned manufacturer carries a scar from a past disaster where delegated work resulted in massive scrap. They vow never to let a critical part leave without personal inspection.",
+        "The Ego of Being Needed: When the factory floor is in chaos, and the founder walks in and solves the crisis in five minutes, it validates their expertise."
+      ]},
+      { type: "h2", text: "The Financial Cost of the Bottleneck" },
+      { type: "p", text: "You can only work so many hours in a day. When a business is limited by one person's time and energy, it cannot scale. It simply hits a ceiling of complexity." },
+      { type: "p", text: "Every hour a founder spends signing routine supplier cheques or arguing over a 2% discount is an hour they are not spending on high-value strategic work. They are playing the role of a ₹30,000-per-month supervisor while abandoning the ₹500,000-per-month role of a CEO." },
+      { type: "figure", title: "The Desk of Chaos", visual: "A founder's desk completely buried under a mountain of blueprints, raw material invoices, and RFQs. A line of employees is standing at the door waiting for approval, while the phone rings off the hook.", caption: "If every decision has to cross your desk, your business has a hard ceiling on its growth." },
+      { type: "pushback", 
+        myth: "But if I don’t check everything myself, my team makes costly mistakes.", 
+        truth: "You do not have a team; you have a group of highly paid helpers. If your factory cannot produce a perfect batch without your physical presence, you have failed to build standard operating procedures.", 
+        shift: "A true CEO allows their team to make small, controlled mistakes so they can learn to fix them. You must shift from managing tasks to managing systems." 
+      },
+      { type: "pushback", 
+        myth: "My key customers refuse to deal with my sales team. They only want to speak to the owner.", 
+        truth: "Your customers do this because you trained them to do it. Every time you answered their direct call and gave a discount, you taught the customer that your team is powerless.", 
+        shift: "Your customers do not actually want to speak to you; they want fast, authoritative answers. Empower your team to give those answers without checking with the boss." 
+      },
+      
+      { type: "worksheet", 
+        id: "ws-founder-dependence",
+        title: "Worksheet: Founder Dependence Check",
+        description: "To figure out if your business is stuck in this phase, you need to take an honest look at where the bottlenecks lie. Answer honestly about what actually happened over the last 30 days.",
+        questions: [
+          "Who approves customer discounts (even the small ones)?",
+          "Who resolves major customer complaints (whose phone rings first)?",
+          "Who finalises pricing for large orders or new RFQs?",
+          "Who signs off on routine capital expenses (like basic machine repairs)?"
+        ]
+      }
+    ]
+  },
+  {
+    id: "ch2",
+    title: "Chapter 2: Why Good Businesses Plateau",
+    type: "chapter",
+    blocks: [
+      { type: "h1", text: "Chapter 2\nWhy Good Manufacturing Businesses Plateau" },
+      { type: "p", text: "Almost every manufacturing business follows a remarkably similar growth pattern. The danger lies in the fact that the skills required to survive the first two phases are the exact same habits that will trap you in the third." },
+      { type: "h2", text: "Stage 1 — Survival" },
+      { type: "p", text: "In the early years, the only goal is to keep the lights on. The business operates on pure hustle. You take what the market gives you, and you are grateful for it." },
+      { type: "h2", text: "Stage 2 — Growth" },
+      { type: "p", text: "Eventually, the relentless hustle pays off. A few steady customers appear. Revenue begins to grow quickly. The business transitions from a fragile startup into a stable, respectable enterprise. The momentum feels unstoppable." },
+      { type: "h2", text: "Stage 3 — Plateau" },
+      { type: "p", text: "But then, something deeply frustrating happens. The rapid growth simply stops. The company hits a revenue ceiling, and for the next three to five years, revenue fluctuates within a narrow, stubborn band." },
+      { type: "figure", title: "The Growth Plateau", visual: "A line graph. The line climbs aggressively like a steep staircase (labelled: Stage 2: Hustle & Growth), and then abruptly flattens out into a stubborn, horizontal, slightly bumpy line (labelled: Stage 3: The Efficiency Plateau).", caption: "Hard work gets you up the stairs. Only strategy breaks through the ceiling." },
+      { type: "h2", text: "The Efficiency Trap" },
+      { type: "p", text: "When founders hit this plateau, their instinct is to look inward. They open the company chequebook and start investing heavily in operational excellence. They buy faster CNC machines. They implement lean manufacturing. They tighten quality control." },
+      { type: "p", text: "They do everything right. Their scrap rates drop. The factory looks immaculate. But the margins do not improve. Why?" },
+      { type: "p", text: "Because efficiency is not the same as market distinction." },
+      { type: "p", text: "If your only competitive advantage is a machine that anyone with a bank loan can buy, you do not actually have a competitive advantage. You just have a very expensive monthly EMI." },
+      { type: "figure", title: "The Capex Illusion", visual: "A hyper-modern, multi-million-rupee 5-axis CNC machine wrapped in a giant red gift bow, with a massive bank loan document sitting next to it.", caption: "If anyone with a bank loan can buy your competitive advantage, it is not an advantage. It is just expensive overhead." },
+      { type: "pushback", 
+        myth: "I don’t need a brand strategy. My quality is my best marketing. My work speaks for itself.", 
+        truth: "Your work does not speak; it just sits on a pallet. In a mature market, 'excellent quality' is no longer a differentiator; it is an expectation. It's like a restaurant bragging that their food won't make you sick.", 
+        shift: "Quality keeps you from getting fired, but strategy is what gets you hired at a premium. Stop selling the absence of defects and start selling the presence of unique value." 
+      },
+
+      { type: "worksheet", 
+        id: "ws-growth-plateau",
+        title: "Worksheet: Growth Plateau Diagnosis",
+        description: "Diagnose exactly where your business structure is currently stuck. Look at your actual financial data.",
+        questions: [
+          "How has your revenue changed in the last five years? (Staircase or flat line?)",
+          "How many entirely different industries do you currently serve?",
+          "How many different product categories do you manufacture?",
+          "What percentage of your total revenue comes from your top three customers?"
+        ]
+      }
+    ]
+  },
+  {
+    id: "ch3",
+    title: "Chapter 3: The Peanut Butter Business",
+    type: "chapter",
+    blocks: [
+      { type: "part", text: "Part 2: The Invisibility Problem" },
+      { type: "h1", text: "Chapter 3\nThe Peanut Butter Business" },
+      { type: "p", text: "Over time, as a manufacturing company tries to break through its growth plateau, a subtle shift happens. It gradually expands into multiple, unrelated markets. This never happens as a grand, deliberate strategy. It happens one small, seemingly logical decision at a time. It is the death of a business by a thousand 'yeses.'" },
+      { type: "p", text: "Imagine taking a spoonful of peanut butter and trying to spread it across a massive, oversized slice of bread. If you spread it very thinly, the bread is technically covered. But every individual bite contains only a microscopic, unnoticeable amount of peanut butter. The flavour is completely lost." },
+      { type: "figure", title: "The Peanut Butter Spread", visual: "Two side-by-side comparison graphics. Left (The Generalist): A central factory with 15 thin, weak arrows pointing outward in every direction to scattered dots. Right (The Specialist): The same factory, but with three massive, thick arrows pointing directly into a single, tightly clustered group.", caption: "High Chaos, Low Margin vs. High Focus, Premium Margin." },
+      { type: "p", text: "The exact same thing happens when a company spreads its finite resources—its engineering talent, its machine hours, its management focus—across too many unrelated markets." },
+      { type: "h2", text: "The Hidden Cost of Context Switching" },
+      { type: "ul", items: [
+        "The Setup Tax: Every time you switch from making an aluminium roller to a stainless steel valve, operators spend half their shift doing setups instead of cutting metal.",
+        "The Quality Control Nightmare: The QC team is forced to learn entirely different compliance standards every single week. Mistakes are inevitable.",
+        "The Inventory Graveyard: Your raw material store is filled with specialised inserts and obscure grades of steel bought for a single, low-volume project three years ago."
+      ]},
+      { type: "h2", text: "The Blended Margin Illusion" },
+      { type: "p", text: "At the end of the year, the founder sees a blended net profit of 8% and thinks, 'We made money.' What the blended margin hides is the terrifying reality: 20% of their focused, repeatable clients generated almost 15% profit, while the other 80%—the scattered, custom jobs—actually lost money. The good clients are subsidising the bad clients." },
+      { type: "figure", title: "The Blended Margin Illusion", visual: "A pie chart divided into two starkly contrasting sections. A small 20% slice colored deep green, labelled: 'The Core Niche (High Margin, Low Chaos)'. The massive 80% remaining slice is colored red, labelled: 'The Distractions (Low Margin, High Chaos)'.", caption: "Your good customers are subsidising the exhaustion caused by your bad customers." },
+      { type: "p", text: "Founders proudly declare, 'We are a custom manufacturer. If you give us a drawing, we can make anything.' But to a high-value buyer, 'we can make anything' translates to 'we are not specialists at anything.'" },
+
+      { type: "pushback", 
+        myth: "Serving many industries is how I protect my business. It is diversification.", 
+        truth: "You are confusing fragmented weakness with true diversification. Being a minor, highly replaceable vendor in ten different industries makes you vulnerable to every single market fluctuation.", 
+        shift: "True safety comes from being so deeply integrated and indispensable to one specific market that even in a recession, your customers cannot afford to lose you. A fortress is safer than scattered tents." 
+      },
+
+      { type: "worksheet", 
+        id: "ws-customer-spread",
+        title: "Worksheet: Customer Spread Map",
+        description: "Map out exactly where your energy is currently going to see if you have accidentally built a Peanut Butter Business.",
+        questions: [
+          "List every single industry you currently serve (e.g., Automotive, Med-Tech, General).",
+          "Next to each industry, list the main product types or materials you supply.",
+          "Estimate the percentage of your total revenue each industry brings in.",
+          "Analyze: How much of your management headache is caused by the bottom 20% of your revenue?"
+        ]
+      }
+    ]
+  },
+  {
+    id: "ch4",
+    title: "Chapter 4: The Commodity Trap",
+    type: "chapter",
+    blocks: [
+      { type: "h1", text: "Chapter 4\nThe Commodity Trap" },
+      { type: "p", text: "When a business spreads itself too thinly across too many markets, it loses its unique edge. It becomes a generalist. And when a manufacturing company loses its edge, it falls straight into the most dangerous, soul-crushing place in the industrial world: The Commodity Trap." },
+      { type: "h2", text: "The Excel Spreadsheet Reality" },
+      { type: "p", text: "To understand the Commodity Trap, you must understand how modern procurement actually works. Purchasing managers are not paid to admire your engineering skills. They are paid to reduce costs." },
+      { type: "p", text: "When they send out an RFQ, they standardise the specifications so that any capable factory can quote on it. They take your complex, beautiful manufacturing business and reduce it to a single row on a massive Excel spreadsheet." },
+      { type: "p", text: "Supplier A: ₹12.50 per piece.\nSupplier B: ₹12.00 per piece." },
+      { type: "p", text: "When your entire business is reduced to a spreadsheet, orders go to the lowest bidder. Margins become razor-thin. You are working incredibly hard just to trade rupees with a corporate buyer who views you as completely replaceable." },
+      { type: "figure", title: "The Spreadsheet Reality", visual: "A stark, zoomed-in view of an Excel spreadsheet. Row 14 says 'Supplier A - ₹12.50.' Row 15 says 'Supplier B - ₹12.00.' A red circle is drawn around the ₹12.00 price.", caption: "To a corporate buyer with no clear differentiator, your life's work is just a row on a spreadsheet." },
+      { type: "h2", text: "The Illusion of 'Quality and Service'" },
+      { type: "p", text: "If you ask a founder why a customer should choose them, they say: 'We maintain excellent quality,' 'We always deliver on time,' and 'We provide great service.' These are incredibly important qualities. But here is the unforgiving truth:" },
+      { type: "p", text: "These are not strategic advantages. They are Operating Imperatives. They are the absolute minimum standard required just to stay in business. When you tell a purchasing manager your advantage is 'quality,' they hear: 'We have brakes.' Every single serious competitor claims the same thing." },
+      { type: "figure", title: "The Value Pyramid", visual: "A three-tiered pyramid. The massive bottom tier is 'Operating Imperatives' (Quality, On-Time Delivery). The middle tier is 'Relationships' (History, Trust). The tiny point at the top is 'Strategic Advantage' (Uncopyable Capability).", caption: "Buyers expect the bottom, they tolerate the middle, but they only pay a premium for the top." },
+      { type: "pushback", 
+        myth: "Price isn't everything. I have deep, twenty-year relationships with my buyers.", 
+        truth: "Personal relationships are a fantastic door-opener, but a terrible long-term strategy. The buyer you've known for twenty years will retire. They will be replaced by a 26-year-old MBA who has a corporate mandate to cut costs by 8%.", 
+        shift: "Relationships get you in the room; undeniable strategic value keeps you in the room. Build a business that relies on structural advantages, not just handshakes." 
+      },
+
+      { type: "worksheet", 
+        id: "ws-real-choice",
+        title: "Worksheet: Why Do Customers REALLY Choose Us?",
+        description: "List the real reasons customers select your company. Put them through the 'So Does Everyone Else' Test. If your competitor can claim it, cross it out.",
+        questions: [
+          "Reason 1: (If it's 'ISO Certified' or 'Good Quality', cross it out)",
+          "Reason 2: (Be specific. e.g., 'Only supplier holding 5-micron tolerance on titanium locally')",
+          "Reason 3: (e.g., 'Vendor-managed inventory directly integrated into OEM ERP')",
+          "If a customer had a gun to their head and was forced to justify paying you 10% MORE than your competitor, what exact reason would they give?"
+        ]
+      }
+    ]
+  },
+  {
+    id: "ch7",
+    title: "Chapter 7: The Real Growth Problem",
+    type: "chapter",
+    blocks: [
+      { type: "part", text: "Part 4: The Strategic Awakening" },
+      { type: "h1", text: "Chapter 7\nThe Real Growth Problem" },
+      { type: "p", text: "When a manufacturing company hits a growth wall, the founder's initial reaction is tactical. They conclude the business simply needs more volume. So they try to hire a highly paid VP of Sales." },
+      { type: "p", text: "Hiring a brilliant, highly paid salesperson to sell a commoditised, unfocused business is like putting a Formula 1 driver behind the wheel of a tractor and expecting to win a race. The driver is not the problem; the vehicle is fundamentally incapable of the task." },
+      { type: "figure", title: "The Rainmaker Myth", visual: "A sleek, high-tech Formula 1 steering wheel attached to a rusted, clunky farm tractor.", caption: "Hiring an expensive VP of Sales to sell an unfocused, commoditised business is like putting an F1 driver in a tractor. The driver isn't the problem." },
+      { type: "h2", text: "The Accumulation of Business" },
+      { type: "p", text: "The issue keeping your business invisible is not a lack of marketing. The real issue is that the company never clearly, definitively decided two things:\n1. Where it should compete.\n2. How it should win." },
+      { type: "p", text: "Instead of making deliberate, hard choices about the future, the business simply accumulated over time. Like barnacles attaching themselves to the hull of a ship, random opportunities accumulated year after year." },
+      { type: "p", text: "There is a profound difference between operational effort and strategic positioning. Operational effort is fighting fires on the shop floor. Strategic positioning is stepping back and asking, 'Are we even fighting the right battles? Are we playing a game we can actually win?'" },
+      { type: "pushback", 
+        myth: "I don’t need to change my business model. I just need to poach my competitor’s top salesperson to bring their book of business.", 
+        truth: "A top salesperson at a highly differentiated company looks like a genius because they are selling a brilliant strategy. If you bring them into a generic business, they will fail and resort to asking for price cuts.", 
+        shift: "A great salesperson amplifies a great strategy; they cannot invent one. Give your sales team a structural advantage to sell." 
+      }
+    ]
+  },
+  {
+    id: "ch8",
+    title: "Chapter 8: The Question Most Businesses Never Ask",
+    type: "chapter",
+    blocks: [
+      { type: "h1", text: "Chapter 8\nThe Question Most Businesses Never Ask" },
+      { type: "p", text: "Once a founder accepts they need a deliberate strategy, a new panic sets in. 'How do I choose? What if I pick the wrong market?'" },
+      { type: "p", text: "Founders are stuck because they look at their current machines and ask, 'Who will buy what I can already make?' Strong companies don't think this way. They ask two fundamental, inseparable questions:\n1. Where should we compete?\n2. How can we win there?" },
+      { type: "p", text: "These two choices are an inseparable, matched pair. Choosing a market without a way to win is a fantasy. Developing capabilities without a clear market leads to bankruptcy. Strategy is the exact intersection of those two elements." },
+      { type: "figure", title: "The Strategic Intersection", visual: "A Venn diagram with two overlapping circles. Left: 'Where to Play' (Market Opportunity). Right: 'How to Win' (Uncopyable Capability). The overlapping center is shaded dark and labelled 'True Brand Power.'", caption: "Choosing a market without a capability is a fantasy. Building a capability without a market is bankruptcy. Strategy is the overlap." },
+      { type: "h2", text: "The Evidence Trap" },
+      { type: "p", text: "When brainstorming 'Where' and 'How', accountants will ask: 'Do we have evidence that this will work?' Stop the meeting immediately." },
+      { type: "p", text: "There is no data about the future. Data is created in the past. If you demand evidence, your team will only pitch safe, boring, incremental ideas you have already done before." },
+      { type: "p", text: "Replace the demand for evidence with the most powerful question in strategy: 'What Would Have to Be True?' Ask: 'For this new market opportunity to actually work, what would have to be true about our customers, our internal capabilities, and our competitors?'" },
+      
+      { type: "worksheet", 
+        id: "ws-where-to-win",
+        title: "Worksheet: Where Might We Win?",
+        description: "Think of three distinct, highly focused markets you could dominate if you dedicated your entire factory to them. Don't ask for evidence; ask what would have to be true.",
+        questions: [
+          "Opportunity 1: Where to Play? | How to Win? | What Would Have to Be True?",
+          "Opportunity 2: Where to Play? | How to Win? | What Would Have to Be True?",
+          "Opportunity 3: Where to Play? | How to Win? | What Would Have to Be True?",
+          "Analysis: Are the things that 'must be true' within your ability to build, or do they rely on luck?"
+        ]
+      }
+    ]
+  },
+  {
+    id: "conclusion",
+    title: "Conclusion: The Beginning of Strategy",
+    type: "chapter",
+    blocks: [
+      { type: "h1", text: "Chapter 9\nThe Beginning of Strategy" },
+      { type: "p", text: "Walk out of your office right now and stand on your factory floor. Look at the specific parts coming off the line. Ask yourself: Who are these parts actually for? Are these machines actively building a highly profitable, defensible reputation, or are we just renting out our spindle hours to the lowest bidder?" },
+      { type: "p", text: "Most manufacturing founders spend their entire lives trapped in the operational weeds, blind to the structural reality of their own business. They work incredibly hard, yet they remain entirely invisible to the market." },
+      { type: "figure", title: "The Strategic Moat", visual: "A highly complex, specialized industrial part (like a medical wiring harness or an aerospace bracket) resting safely inside a heavy, impenetrable medieval fortress wall.", caption: "True strategy doesn't just win you a premium order; it builds an uncopyable fortress around your margins." },
+      { type: "p", text: "They believe strategy is a luxury reserved for massive multinational corporations. In reality, strategy begins with something much simpler, and much harder. Strategy begins with better questions." },
+      { type: "p", text: "It begins with the courage to stop accepting every drawing that comes across your desk. It begins with the profound, terrifying realisation that you cannot be everything to everyone." },
+      { type: "quote", text: "When you decide not to quote for a job because it falls outside your new 'Where to Play' criteria, that is strategy. When you refuse to drop your price to match a cheap competitor because you know your 'How to Win' delivers uncopyable value, that is strategy." },
+      { type: "h2", text: "The Next Challenge" },
+      { type: "p", text: "If you have completed the worksheets in this book, you have already taken the hardest step. You have diagnosed the exact structural flaws in your business model." },
+      { type: "p", text: "The era of accumulating random orders is over. It is time to make choices. It is time to start winning." }
+    ]
+  }
+];
+
+
+// --- UI COMPONENTS ---
+
+const CoverPage = ({ onStart }) => (
+  <div className="flex flex-col items-center justify-center min-h-screen p-8 text-center bg-slate-900 text-white relative overflow-hidden">
+    {/* Abstract Background Design */}
+    <div className="absolute inset-0 opacity-20 pointer-events-none">
+      <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-amber-500 blur-[120px]"></div>
+      <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-slate-500 blur-[120px]"></div>
+      <div className="absolute top-0 right-0 w-full h-full bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+    </div>
+
+    <div className="z-10 max-w-3xl flex flex-col items-center">
+      <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800 border border-slate-700 text-amber-400 text-sm font-semibold tracking-widest uppercase">
+        <BookOpen size={16} /> Interactive Field Manual
+      </div>
+      <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight font-serif">
+        Why Great Manufacturers <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-200">Stay Invisible</span>
+      </h1>
+      <p className="text-xl md:text-2xl text-slate-300 mb-12 max-w-2xl font-light">
+        How to Turn a Good Manufacturing Business into a Recognised Brand
+      </p>
+      
+      <div className="mb-12">
+        <p className="text-slate-400 mb-2 uppercase tracking-widest text-sm">By</p>
+        <p className="text-xl font-semibold">Sudharsan K R</p>
+      </div>
+
+      <button 
+        onClick={onStart}
+        className="group relative inline-flex items-center gap-3 px-8 py-4 bg-amber-500 text-slate-900 font-bold text-lg rounded-lg hover:bg-amber-400 transition-all duration-300 transform hover:scale-105 shadow-[0_0_40px_-10px_rgba(245,158,11,0.5)]"
+      >
+        Read This Before You Turn Another Page
+        <ChevronRight className="group-hover:translate-x-1 transition-transform" />
+      </button>
+    </div>
+  </div>
+);
+
+const PushbackCard = ({ myth, truth, shift }) => (
+  <div className="my-10 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-lg overflow-hidden">
+    <div className="bg-slate-900 text-white p-4 flex items-center gap-3">
+      <AlertCircle className="text-amber-500" />
+      <h3 className="text-lg font-bold m-0 uppercase tracking-wider">The Founder Pushback</h3>
+    </div>
+    <div className="p-6 md:p-8 space-y-6">
+      <div>
+        <h4 className="text-sm font-bold text-red-500 uppercase tracking-wider mb-2 flex items-center gap-2">
+          <X size={16}/> The Myth
+        </h4>
+        <p className="text-slate-700 dark:text-slate-300 italic text-lg border-l-4 border-red-500 pl-4 py-1">"{myth}"</p>
+      </div>
+      <div>
+        <h4 className="text-sm font-bold text-emerald-500 uppercase tracking-wider mb-2 flex items-center gap-2">
+          <CheckCircle2 size={16}/> The Brutal Truth
+        </h4>
+        <p className="text-slate-800 dark:text-slate-200 font-medium">{truth}</p>
+      </div>
+      <div className="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-700/50">
+        <h4 className="text-sm font-bold text-amber-600 dark:text-amber-500 uppercase tracking-wider mb-2 flex items-center gap-2">
+          <Lightbulb size={16}/> The Mindset Shift
+        </h4>
+        <p className="text-slate-800 dark:text-slate-200">{shift}</p>
+      </div>
+    </div>
+  </div>
+);
+
+const FigureBlock = ({ title, visual, caption }) => (
+  <figure className="my-12 border border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-800 shadow-md overflow-hidden">
+    <div className="aspect-[4/3] md:aspect-[21/9] bg-slate-100 dark:bg-slate-900/50 flex flex-col items-center justify-center p-6 text-center border-b border-slate-200 dark:border-slate-700 relative">
+      <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] bg-[linear-gradient(45deg,transparent_25%,rgba(0,0,0,1)_25%,rgba(0,0,0,1)_50%,transparent_50%,transparent_75%,rgba(0,0,0,1)_75%,rgba(0,0,0,1)_100%)] bg-[length:20px_20px]"></div>
+      <ImageIcon size={48} className="text-slate-300 dark:text-slate-600 mb-4 z-10" />
+      <h4 className="text-lg font-bold text-slate-800 dark:text-slate-200 mb-2 font-serif z-10">{title}</h4>
+      <p className="text-sm text-slate-500 dark:text-slate-400 max-w-lg italic px-4 z-10">"{visual}"</p>
+    </div>
+    <figcaption className="p-4 md:p-5 bg-slate-50 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 font-medium text-sm md:text-base border-l-4 border-l-amber-500">
+      {caption}
+    </figcaption>
+  </figure>
+);
+
+const InteractiveWorksheet = ({ id, title, description, questions }) => {
+  const [answers, setAnswers] = useState({});
+
+  useEffect(() => {
+    const saved = localStorage.getItem(`worksheet-${id}`);
+    if (saved) {
+      setAnswers(JSON.parse(saved));
+    }
+  }, [id]);
+
+  const handleChange = (qIndex, value) => {
+    const newAnswers = { ...answers, [qIndex]: value };
+    setAnswers(newAnswers);
+    localStorage.setItem(`worksheet-${id}`, JSON.stringify(newAnswers));
+  };
+
+  return (
+    <div className="my-12 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700 p-6 md:p-10 shadow-inner">
+      <div className="mb-8">
+        <span className="inline-block px-3 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-400 text-xs font-bold uppercase tracking-widest rounded mb-4">Strategic Exercise</span>
+        <h3 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-3 font-serif">{title}</h3>
+        <p className="text-slate-600 dark:text-slate-400">{description}</p>
+      </div>
+      
+      <div className="space-y-8">
+        {questions.map((q, idx) => (
+          <div key={idx}>
+            <label className="block text-slate-800 dark:text-slate-200 font-medium mb-3">
+              {idx + 1}. {q}
+            </label>
+            <textarea 
+              className="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 rounded-lg p-4 text-slate-800 dark:text-slate-200 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all outline-none resize-y min-h-[100px]"
+              placeholder="Type your honest assessment here... (Progress autosaves)"
+              value={answers[idx] || ''}
+              onChange={(e) => handleChange(idx, e.target.value)}
+            />
+          </div>
+        ))}
+      </div>
+      
+      <div className="mt-6 flex justify-end">
+        <span className="text-xs text-slate-400 flex items-center gap-1">
+          <CheckCircle2 size={12}/> Automatically saved to your browser
+        </span>
+      </div>
+    </div>
+  );
+};
+
+
+// --- MAIN APP COMPONENT ---
+
+export default function App() {
+  const [currentChapterIdx, setCurrentChapterIdx] = useState(0);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [theme, setTheme] = useState('light');
+
+  // Load saved progress and theme on mount
+  useEffect(() => {
+    const savedChapter = localStorage.getItem('ebook-progress');
+    if (savedChapter) setCurrentChapterIdx(parseInt(savedChapter, 10));
+    
+    const savedTheme = localStorage.getItem('ebook-theme');
+    if (savedTheme) {
+      setTheme(savedTheme);
+      if (savedTheme === 'dark') document.documentElement.classList.add('dark');
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setTheme('dark');
+      document.documentElement.classList.add('dark');
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    localStorage.setItem('ebook-theme', newTheme);
+    if (newTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  };
+
+  const goToChapter = (idx) => {
+    setCurrentChapterIdx(idx);
+    localStorage.setItem('ebook-progress', idx.toString());
+    setSidebarOpen(false);
+    window.scrollTo(0, 0);
+  };
+
+  const chapter = bookData[currentChapterIdx];
+  const progress = ((currentChapterIdx) / (bookData.length - 1)) * 100;
+
+  if (chapter.type === 'cover') {
+    return <CoverPage onStart={() => goToChapter(1)} />;
+  }
+
+  return (
+    <div className={`min-h-screen flex transition-colors duration-300 ${theme === 'dark' ? 'bg-slate-900 text-slate-300' : 'bg-white text-slate-800'}`}>
+      
+      {/* SIDEBAR OVERLAY FOR MOBILE */}
+      {sidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
+      {/* SIDEBAR NAVIGATION */}
+      <aside className={`fixed lg:sticky top-0 h-screen w-80 bg-slate-100 dark:bg-slate-950 border-r border-slate-200 dark:border-slate-800 z-50 transition-transform duration-300 flex flex-col ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
+        <div className="p-6 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center">
+          <div>
+            <h2 className="font-bold text-lg text-slate-900 dark:text-white leading-tight font-serif">Why Great Manufacturers<br/>Stay Invisible</h2>
+            <p className="text-xs text-amber-600 dark:text-amber-500 mt-1 uppercase tracking-widest font-semibold">Field Manual</p>
+          </div>
+          <button onClick={() => setSidebarOpen(false)} className="lg:hidden p-2 text-slate-500">
+            <X size={20} />
+          </button>
+        </div>
+        
+        <div className="flex-1 overflow-y-auto p-4 space-y-1">
+          {bookData.map((item, idx) => {
+            if (item.type === 'cover') return null;
+            const isActive = idx === currentChapterIdx;
+            return (
+              <button
+                key={item.id}
+                onClick={() => goToChapter(idx)}
+                className={`w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                  isActive 
+                    ? 'bg-amber-500/10 text-amber-700 dark:text-amber-400' 
+                    : 'text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'
+                }`}
+              >
+                {item.title}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="p-6 border-t border-slate-200 dark:border-slate-800">
+          <div className="text-xs font-semibold text-slate-400 mb-2 uppercase tracking-wider">Reading Progress</div>
+          <div className="h-1.5 w-full bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+            <div className="h-full bg-amber-500 transition-all duration-500" style={{ width: `${progress}%` }}></div>
+          </div>
+          <div className="mt-2 text-xs text-right text-slate-500">{Math.round(progress)}% Complete</div>
+        </div>
+      </aside>
+
+      {/* MAIN CONTENT AREA */}
+      <main className="flex-1 min-w-0 flex flex-col h-screen overflow-hidden">
+        
+        {/* TOP BAR */}
+        <header className="flex-none h-16 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md sticky top-0 z-30 flex items-center justify-between px-4 lg:px-8">
+          <div className="flex items-center gap-4">
+            <button 
+              onClick={() => setSidebarOpen(true)}
+              className="lg:hidden p-2 -ml-2 text-slate-500 hover:text-slate-900 dark:hover:text-white"
+            >
+              <Menu size={24} />
+            </button>
+            <div className="hidden md:block text-sm font-medium text-slate-500">
+              {chapter.title}
+            </div>
+          </div>
+          
+          <button 
+            onClick={toggleTheme}
+            className="p-2 text-slate-500 hover:text-slate-900 dark:hover:text-white rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+          >
+            {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+          </button>
+        </header>
+
+        {/* READER AREA */}
+        <div className="flex-1 overflow-y-auto scroll-smooth pb-32">
+          <article className="max-w-3xl mx-auto px-6 py-12 md:py-20">
+            {chapter.blocks?.map((block, idx) => {
+              switch (block.type) {
+                case 'part':
+                  return (
+                    <div key={idx} className="mb-4 text-amber-600 dark:text-amber-500 font-bold tracking-widest uppercase text-sm">
+                      {block.text}
+                    </div>
+                  );
+                case 'h1':
+                  return (
+                    <h1 key={idx} className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-10 font-serif leading-tight whitespace-pre-line">
+                      {block.text}
+                    </h1>
+                  );
+                case 'h2':
+                  return (
+                    <h2 key={idx} className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mt-16 mb-6 font-serif">
+                      {block.text}
+                    </h2>
+                  );
+                case 'h3':
+                  return (
+                    <h3 key={idx} className="text-xl font-bold text-slate-800 dark:text-slate-200 mt-10 mb-4">
+                      {block.text}
+                    </h3>
+                  );
+                case 'p':
+                  return (
+                    <p key={idx} className="text-lg md:text-xl leading-relaxed mb-6 font-serif text-slate-700 dark:text-slate-300">
+                      {block.text}
+                    </p>
+                  );
+                case 'quote':
+                  return (
+                    <blockquote key={idx} className="my-12 pl-6 border-l-4 border-amber-500 text-2xl font-serif italic text-slate-800 dark:text-slate-200 font-light leading-relaxed">
+                      "{block.text}"
+                    </blockquote>
+                  );
+                case 'ul':
+                  return (
+                    <ul key={idx} className="space-y-4 my-6 pl-4">
+                      {block.items.map((item, i) => (
+                        <li key={i} className="flex gap-4 items-start text-lg md:text-xl leading-relaxed font-serif text-slate-700 dark:text-slate-300">
+                          <span className="w-2 h-2 mt-2.5 rounded-full bg-amber-500 flex-shrink-0"></span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  );
+                case 'figure':
+                  return <FigureBlock key={idx} {...block} />;
+                case 'pushback':
+                  return <PushbackCard key={idx} {...block} />;
+                case 'worksheet':
+                  return <InteractiveWorksheet key={idx} {...block} />;
+                default:
+                  return null;
+              }
+            })}
+
+            {/* NAVIGATION FOOTER */}
+            <div className="mt-20 pt-10 border-t border-slate-200 dark:border-slate-800 flex justify-between items-center">
+              {currentChapterIdx > 1 ? (
+                <button 
+                  onClick={() => goToChapter(currentChapterIdx - 1)}
+                  className="flex items-center gap-2 text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors font-medium"
+                >
+                  <ChevronLeft size={20} /> Previous
+                </button>
+              ) : <div></div>}
+              
+              {currentChapterIdx < bookData.length - 1 && (
+                <button 
+                  onClick={() => goToChapter(currentChapterIdx + 1)}
+                  className="flex items-center gap-2 text-amber-600 dark:text-amber-500 hover:text-amber-700 dark:hover:text-amber-400 transition-colors font-bold uppercase tracking-wider"
+                >
+                  Next Chapter <ChevronRight size={20} />
+                </button>
+              )}
+            </div>
+          </article>
+        </div>
+      </main>
+    </div>
+  );
+}
