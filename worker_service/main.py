@@ -41,12 +41,16 @@ async def handle_pubsub_task(payload: PubSubPushPayload):
             return {"status": "ignored", "reason": "missing_phone"}
 
         logger.info(f"Processing task for {phone}. Type: {message_type}, Day: {current_day}")
-        final_reply = ""
+        
+        final_reply_text = ""
+        buttons_to_send = None
 
         # 2. Routing Logic
         if message_type == "DAILY_STORY":
-            # 9:00 AM Cron push (Forced story or Phase 2 Menu)
-            final_reply = curriculum.get_daily_cron_message(current_day)
+            # 9:00 AM Cron push (Unpack the dictionary from curriculum.py)
+            cron_content = curriculum.get_daily_cron_message(current_day)
+            final_reply_text = cron_content["text"]
+            buttons_to_send = cron_content["buttons"]
             logger.info(f"Generated Day {current_day} morning push for {phone}")
             
         elif message_type == "INCOMING_CHAT":
@@ -56,21 +60,21 @@ async def handle_pubsub_task(payload: PubSubPushPayload):
             
             # Intercept Menu Commands (Zero API cost for Claude)
             if intent == "MENU_STORY":
-                final_reply = curriculum.get_user_requested_content(current_day, "STORY")
+                final_reply_text = curriculum.get_user_requested_content(current_day, "STORY")
             elif intent == "MENU_SPAR":
-                final_reply = curriculum.get_user_requested_content(current_day, "SPAR")
+                final_reply_text = curriculum.get_user_requested_content(current_day, "SPAR")
                 
             # Otherwise, send to Claude for real strategic advice or sparring evaluation
             else:
-                final_reply = ai.generate_strategy(intent, text, current_day)
+                final_reply_text = ai.generate_strategy(intent, text, current_day)
                 
         else:
             logger.warning(f"Unknown task type: {message_type}")
             return {"status": "ignored", "reason": "unknown_message_type"}
 
-        # 3. Send final result back via WhatsApp
-        if final_reply:
-            success = await whatsapp.send_whatsapp_message(phone, final_reply)
+        # 3. Send final result back via WhatsApp (passing buttons if they exist)
+        if final_reply_text:
+            success = await whatsapp.send_whatsapp_message(phone, final_reply_text, buttons_to_send)
             if not success:
                 logger.error(f"Failed to send WhatsApp message to {phone}")
                 # Raise 500 so Pub/Sub knows the WhatsApp API failed and retries sending later
