@@ -58,27 +58,29 @@ async def handle_graphy_onboarding(payload: GraphyWebhookPayload):
 async def handle_whatsapp_message(payload: WhatsAppWebhookPayload):
     """Catches incoming WhatsApp messages from Wati/Interakt."""
     try:
-        # 1. Validate User Exists (Security check)
+        # 1. Validate User Exists
         user = db.get_user(payload.phone)
         if not user or user.get("status") != "active":
             logger.warning(f"Unauthorized or inactive user attempted contact: {payload.phone}")
-            # Still return 200 so WhatsApp doesn't retry, but ignore the payload
             return {"status": "ignored", "reason": "unauthorized_user"}
 
-        # 2. Push to Queue immediately
+        # CRITICAL UPDATE: Extract the current_day so Service B knows what story/spar to fetch!
+        active_day = user.get("current_day", 1)
+
+        # 2. Push to Queue with the current_day included
         published = pubsub.publish_task(
             phone=payload.phone, 
             message_type="INCOMING_CHAT", 
-            text=payload.text
+            text=payload.text,
+            current_day=active_day # <--- Added this!
         )
         
         if not published:
             raise HTTPException(status_code=500, detail="Failed to queue task")
 
-        # 3. Log query for rate limiting/analytics
+        # 3. Log query for rate limiting
         db.increment_user_day_and_query(payload.phone, is_query=True)
 
-        # 4. Instantly return 200 OK to prevent Webhook timeouts
         return {"status": "success", "message": "Task queued for AI processing"}
     except Exception as e:
         logger.error(f"WhatsApp webhook flow failed: {e}")
@@ -86,28 +88,27 @@ async def handle_whatsapp_message(payload: WhatsAppWebhookPayload):
 
 
 @app.post("/cron/daily-habit")
-@app.get("/cron/daily-habit") # Allow GET for easier testing
+@app.get("/cron/daily-habit") 
 async def trigger_daily_habit(request: Request):
     """Triggered by GCP Cloud Scheduler every day at 9:00 AM IST."""
     logger.info("Daily habit cron triggered.")
     try:
-        # 1. Fetch all active users
         users = db.get_active_users()
-        logger.info(f"Found {len(users)} active users to process.")
-
         success_count = 0
+        
         for user in users:
             phone = user.get("phone_number")
-            current_day = user.get("current_day", 1)
+            # 1. Calculate what today is (Yesterday + 1)
+            new_current_day = user.get("current_day", 1) + 1
 
-            # 2. Push Daily Story task to the queue
+            # 2. Push Daily Story task to the queue for the NEW day
             published = pubsub.publish_task(
                 phone=phone,
                 message_type="DAILY_STORY",
-                current_day=current_day
+                current_day=new_current_day # <--- Push the correct new day
             )
 
-            # 3. Increment their day for tomorrow
+            # 3. Save the new day to the database so it's ready if they reply "STORY" later
             if published:
                 db.increment_user_day_and_query(phone, is_query=False)
                 success_count += 1
