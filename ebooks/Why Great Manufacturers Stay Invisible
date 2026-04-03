@@ -13,8 +13,8 @@ import {
   Image as ImageIcon
 } from 'lucide-react';
 
-// --- DATA STRUCTURE: The Book Content ---
-// To keep the code maintainable, content is structured into sections and blocks.
+// --- DATA STRUCTURE: The Unabridged Book Content ---
+// Every single word from "Why Great Manufacturers Stay Invisible_v2.docx" is preserved here.
 const bookData = [
   {
     id: "cover",
@@ -22,42 +22,34 @@ const bookData = [
     type: "cover"
   },
   {
-    id: "read-this-first",
-    title: "Read This First",
+    id: "front-matter",
+    title: "Front Matter & Preface",
     type: "chapter",
     blocks: [
-      { type: "h1", text: "READ THIS BEFORE YOU TURN ANOTHER PAGE." },
-      { type: "p", text: "If you are holding this book, you are likely a brilliant engineer or a deeply committed founder who built a manufacturing business from the ground up. You have invested in precise machines, built a loyal workforce, and maintain excellent quality." },
-      { type: "p", text: "But right now, you might also be utterly exhausted." },
-      { type: "p", text: "Despite your 18-hour days and constant operational improvements, your revenue has likely hit a stubborn plateau. You are surviving on volume, but you are not growing in value. You find yourself trapped in a daily knife fight over a few paise, trading rupees with corporate buyers who view you as completely replaceable." },
-      { type: "p", text: "This book is going to challenge everything you believe about how to grow a manufacturing company." },
-      { type: "h3", text: "In the following pages, you will discover:" },
+      { type: "h1", text: `[Title Page]\nWhy Great Manufacturers Stay Invisible\nHow to Turn a Good Manufacturing Business into a Recognised Brand\nBy [Your Name/Author Name]` },
+      { type: "p", text: `Copyright © 2026 by Sudharsan K R\nAll rights reserved.\nNo part of this publication may be reproduced, distributed, or transmitted in any form or by any means—including photocopying, recording, or other electronic or mechanical methods—without the prior written permission of the author, except in the case of brief quotations embodied in critical reviews and certain other non-commercial uses permitted by copyright law.` },
+      { type: "p", text: `Disclaimer: This book is designed to provide accurate and authoritative information and strategies for the manufacturing sector. The case studies, factories, and individuals featured in these pages (such as "Rajesh in Pune" or "Meera in Chennai" ) are composite accounts based on real-world consulting experiences. Specific names, locations, and identifying business metrics have been altered to protect client confidentiality and proprietary operations.\nThis publication is sold with the understanding that the author is not engaged in rendering legal, accounting, or other professional compliance services. If expert assistance is required, the services of a competent professional should be sought.\nPublished in India.` },
+      { type: "h2", text: `READ THIS BEFORE YOU TURN ANOTHER PAGE.` },
+      { type: "p", text: `If you are holding this book, you are likely a brilliant engineer or a deeply committed founder who built a manufacturing business from the ground up . You have invested in precise machines, built a loyal workforce, and maintain excellent quality .\nBut right now, you might also be utterly exhausted.\nDespite your 18-hour days and constant operational improvements, your revenue has likely hit a stubborn plateau . You are surviving on volume, but you are not growing in value. You find yourself trapped in a daily knife fight over a few paise, trading rupees with corporate buyers who view you as completely replaceable .\nThis book is going to challenge everything you believe about how to grow a manufacturing company.\nIn the following pages, you will discover:` },
       { type: "ul", items: [
-        "The Invisibility Problem: Why doing a little bit of everything for everyone ensures that your company is famous for absolutely nothing.",
-        "The Spreadsheet Reality: How modern procurement strips away your unique value and reduces your life's work to a single row on an Excel spreadsheet, where orders automatically go to the lowest bidder.",
-        "The Quality Illusion: The brutal truth that your world-class quality and on-time delivery are not strategic advantages. They are simply 'Operating Imperatives'—the bare minimum required just to be invited to quote.",
-        "The Marketing Mirage: Why spending a fortune on a glossy new website and a fresh logo will never fix a broken, commoditized business model."
+        `The Invisibility Problem: Why doing a little bit of everything for everyone ensures that your company is famous for absolutely nothing .`,
+        `The Spreadsheet Reality: How modern procurement strips away your unique value and reduces your life's work to a single row on an Excel spreadsheet, where orders automatically go to the lowest bidder .`,
+        `The Quality Illusion: The brutal truth that your world-class quality and on-time delivery are not strategic advantages . They are simply "Operating Imperatives"—the bare minimum required just to be invited to quote .`,
+        `The Marketing Mirage: Why spending a fortune on a glossy new website and a fresh logo will never fix a broken, commoditized business model .`
       ]},
-      { type: "p", text: "This is not a book of motivational slogans. It is a field manual for escaping the commodity trap." },
-      { type: "p", text: "If you are ready to stop competing purely on price and hard work, and ready to transition from being an invisible vendor to a highly recognized, premium brand in your category, you are in the right place." },
-      { type: "quote", text: "Hard work scales the chaos; only strategy scales the profit." }
-    ]
-  },
-  {
-    id: "preface",
-    title: "Preface",
-    type: "chapter",
-    blocks: [
-      { type: "h1", text: "Preface" },
-      { type: "p", text: "In my career, I haven’t just observed the engineering and manufacturing world from the sidelines—I have been in the trenches negotiating it." },
-      { type: "p", text: "During countless hours of Joint Venture discussions and facility visits with institutions like ISRO and IISc, I sat across the table from some of the brightest minds in the country. In those labs, I saw firsthand what absolute technical perfection looks like. I learned the rigorous discipline required to translate complex, cutting-edge science into real-world utility." },
-      { type: "p", text: "I took that same approach to the boardroom tables of industrial giants like L&T and GMR. Operating as a prospective JV partner, I learned exactly how the titans play the game. They don't just focus on bending metal or pouring concrete. They understand how to structure massive contracts, position themselves for absolute leverage, and drive revenue at scale. They understand that engineering is a tool, but strategy is the engine." },
-      { type: "p", text: "But when I stepped into the boardrooms of popular MSMEs across India for negotiations, I saw a completely different, tragic reality." },
-      { type: "p", text: "I would walk onto their factory floors and meet founders who possessed the deep tech understanding of a scientist. They were brilliant, driven men and women working 18-hour days to deliver flawless quality to their clients." },
-      { type: "p", text: "Yet, they were exhausted. Their revenue had flatlined, and their margins were being squeezed to death. Despite their incredible hard work, they lacked the commercial aggression and strategic architecture of the giants. Because of this, they were trapped—treated as invisible, replaceable vendors by the very corporations they were supplying." },
-      { type: "p", text: "That massive gap is why I stepped into strategy, and it is exactly why I wrote this book. My mission is about fixing that exact disconnect. I help manufacturing founders combine their hard-earned engineering skills with the strategic leverage they need to protect their margins and command respect." },
-      { type: "p", text: "You already know how to make world-class products. You already know how to work hard. This book is designed to teach you how to structure your business so the market is finally forced to pay you what you are actually worth." },
-      { type: "p", text: "It is time to stop taking whatever orders fall into your lap. It is time to take absolute control of your market, your margins, and your future." }
+      { type: "p", text: `This is not a book of motivational slogans. It is a field manual for escaping the commodity trap.\nIf you are ready to stop competing purely on price and hard work, and ready to transition from being an invisible vendor to a highly recognized, premium brand in your category, you are in the right place .\nTurn the page. It is time to step off the factory floor and start building your strategic moat.` },
+      { type: "quote", text: `Hard work scales the chaos; only strategy scales the profit` },
+      { type: "h2", text: `[Table of Contents]` },
+      { type: "p", text: `Preface\nIntroduction\nThe Invisible Problem\nPart 1: The Hard Work Trap\nChapter 1: The 18-Hour Founder\nWorksheet: Founder Dependence Check\nChapter 2: Why Good Manufacturing Businesses Plateau\nWorksheet: Growth Plateau Diagnosis\nPart 2: The Invisibility Problem\nChapter 3: The Peanut Butter Business\nWorksheet: Customer Spread Map\nChapter 4: The Commodity Trap\nWorksheet: Why Do Customers Really Choose Us?\nPart 3: What Brand Really Means in Manufacturing\nChapter 5: Brand Is Not Marketing\nWorksheet: Market Perception Exercise\nChapter 6: The Power of Strategic Focus\nPart 4: The Strategic Awakening\nChapter 7: The Real Growth Problem\nChapter 8: The Question Most Businesses Never Ask\nWorksheet: Where Might We Win?\nConclusion\nChapter 9: The Beginning of Strategy\nContinue the Journey\nStop Planning, Start Winning` },
+      { type: "h1", text: `Preface` },
+      { type: "p", text: `In my career, I haven’t just observed the engineering and manufacturing world from the sidelines—I have been in the trenches negotiating it.` },
+      { type: "p", text: `During countless hours of Joint Venture discussions and facility visits with institutions like ISRO and IISc, I sat across the table from some of the brightest minds in the country. In those labs, I saw firsthand what absolute technical perfection looks like. I learned the rigorous discipline required to translate complex, cutting-edge science into real-world utility.` },
+      { type: "p", text: `I took that same approach to the boardroom tables of industrial giants like L&T and GMR. Operating as a prospective JV partner, I learned exactly how the titans play the game. They don't just focus on bending metal or pouring concrete. They understand how to structure massive contracts, position themselves for absolute leverage, and drive revenue at scale. They understand that engineering is a tool, but strategy is the engine.` },
+      { type: "p", text: `But when I stepped into the boardrooms of popular MSMEs across India for negotiations, I saw a completely different, tragic reality.` },
+      { type: "p", text: `I would walk onto their factory floors and meet founders who possessed the deep tech understanding of a scientist. They were brilliant, driven men and women working 18-hour days to deliver flawless quality to their clients .` },
+      { type: "p", text: `Yet, they were exhausted. Their revenue had flatlined, and their margins were being squeezed to death . Despite their incredible hard work, they lacked the commercial aggression and strategic architecture of the giants. Because of this, they were trapped—treated as invisible, replaceable vendors by the very corporations they were supplying .` },
+      { type: "p", text: `That massive gap is why I stepped into strategy, and it is exactly why I wrote this book.\nMy mission is about fixing that exact disconnect. I help manufacturing founders combine their hard-earned engineering skills with the strategic leverage they need to protect their margins and command respect.` },
+      { type: "p", text: `You already know how to make world-class products. You already know how to work hard. This book is designed to teach you how to structure your business so the market is finally forced to pay you what you are actually worth.\nIt is time to stop taking whatever orders fall into your lap. It is time to take absolute control of your market, your margins, and your future` }
     ]
   },
   {
@@ -65,28 +57,41 @@ const bookData = [
     title: "Introduction: The Invisible Problem",
     type: "chapter",
     blocks: [
-      { type: "h1", text: "Introduction\nThe Invisible Problem" },
-      { type: "p", text: "The first thing that hits you when you walk onto a well-run factory floor is the smell. It is a distinct, sweet-and-metallic tang of cutting fluid mixed with warm machine oil." },
-      { type: "p", text: "Picture a precision machining unit in Pune. The air hums with the high-pitched whine of CNC lathes cutting through hardened steel. Yellow safety lines are neatly painted on the epoxy floor. The operators are focused, the tool crib is immaculately organised, and the dispatch area is packed with wooden crates ready to ship." },
-      { type: "p", text: "The founder of this company—let us call him Rajesh—is a brilliant engineer. He started the business twenty-two years ago with a single second-hand milling machine in a tiny shed. Today, he manages a state-of-the-art facility spanning thirty thousand square feet." },
-      { type: "p", text: "On paper, Rajesh has built exactly what a manufacturing founder is supposed to build. He has incredibly precise, expensive machines; a team of experienced, loyal workers; good relationships with his tier-one automotive customers; and a steady, predictable flow of orders." },
-      { type: "p", text: "Yet, as he sits in his glass-walled cabin one evening, staring at the yearly financials while the rhythmic thud of a power press vibrates through the floorboards, something is deeply bothering him." },
-      { type: "p", text: "His revenue has stayed in the exact same range—hovering right around the ₹25 Crore mark—for almost five years. Every year, Rajesh works harder. He arrives at the plant at 8:00 AM and rarely leaves before the second shift clocks in. Every year, the business improves operationally. They reduce scrap rates, optimise cycle times, and implement strict quality management systems." },
-      { type: "p", text: "Yet, growth remains stubbornly flat. His margins are constantly under pressure from buyers who demand year-on-year price reductions. He is utterly exhausted." },
-      { type: "quote", text: "We are doing everything right. My quality is 99.8% defect-free. We never miss a delivery schedule. But somehow, the business is not breaking through. We are just surviving on volume, not growing in value." },
-      { type: "h2", text: "The Marketing Mirage" },
-      { type: "p", text: "When growth stalls, many owners naturally assume the problem is how they are presenting themselves to the world. They believe they have a marketing problem." },
-      { type: "p", text: "They look at their outdated website, their ten-year-old logo, and the dusty catalogues sitting in their reception area, and they think, 'If we just looked more professional, we would get better clients.'" },
-      { type: "p", text: "So, they spend the money. They hire an agency. They print the new brochures. And what happens? Very little." },
-      { type: "p", text: "Perhaps they pick up a few minor orders, but the fundamental trajectory of the business does not change. The leads from the exhibition turn out to be price-shoppers looking for the cheapest vendor. The glossy website looks great, but it says the exact same things as every other competitor’s website: 'We provide high-quality components, on-time delivery, and excellent customer service.'" },
-      { type: "p", text: "They quickly realise that putting a fresh coat of paint on the company does not change how the market values them." },
-      { type: "h2", text: "The True Diagnosis" },
-      { type: "p", text: "This business is not invisible because of marketing. It is invisible because it lacks strategic focus." },
-      { type: "p", text: "Over the years, to keep the machines running and people employed, founders take on almost any job that fits their equipment. They make parts for tractors, components for textile machinery, and fittings for the oil and gas sector. They do a little bit of everything for everyone." },
-      { type: "p", text: "Because they do everything, they are not famous for anything." },
-      { type: "figure", title: "The Sea of Sameness", visual: "A sprawling, isometric view of an industrial estate. Dozens of identical factory sheds with identical smoke stacks. In the middle is one factory glowing or highlighted in a distinct color, representing the 'Brand.'", caption: "Hard work makes you busy. A lack of strategy makes you invisible in a sea of capable competitors." },
-      { type: "p", text: "When a buyer needs a generic part machined, they call. But when they have a complex, high-value problem to solve in a specific application, they don't think of the generalist. They seek out a specialist. And they pay that specialist a premium." },
-      { type: "p", text: "Strategic focus is something most manufacturing businesses never consciously design. They evolve by accident. They confuse operational excellence—being good at making things—with strategic positioning—being uniquely valuable to a specific market." }
+      { type: "h1", text: `Introduction\nThe Invisible Problem` },
+      { type: "p", text: `The first thing that hits you when you walk onto a well-run factory floor is the smell. It is a distinct, sweet-and-metallic tang of cutting fluid mixed with warm machine oil.` },
+      { type: "p", text: `Picture a precision machining unit in Pune. The air hums with the high-pitched whine of CNC lathes cutting through hardened steel. Yellow safety lines are neatly painted on the epoxy floor. The operators are focused, the tool crib is immaculately organised, and the dispatch area is packed with wooden crates ready to ship.` },
+      { type: "p", text: `The founder of this company—let us call him Rajesh—is a brilliant engineer. He started the business twenty-two years ago with a single second-hand milling machine in a tiny shed. Today, he manages a state-of-the-art facility spanning thirty thousand square feet.` },
+      { type: "p", text: `On paper, Rajesh has built exactly what a manufacturing founder is supposed to build.\nHe has:` },
+      { type: "ul", items: [
+        `Incredibly precise, expensive machines`,
+        `A team of experienced, loyal workers`,
+        `Good relationships with his tier-one automotive customers`,
+        `A steady, predictable flow of orders`
+      ]},
+      { type: "p", text: `Yet, as he sits in his glass-walled cabin one evening, staring at the yearly financials while the rhythmic thud of a power press vibrates through the floorboards, something is deeply bothering him.` },
+      { type: "p", text: `His revenue has stayed in the exact same range—hovering right around the ₹25 Crore mark—for almost five years.` },
+      { type: "p", text: `Every year, Rajesh works harder. He arrives at the plant at 8:00 AM and rarely leaves before the second shift clocks in. Every year, the business improves operationally. They reduce scrap rates, optimise cycle times, and implement strict quality management systems.` },
+      { type: "p", text: `Yet, growth remains stubbornly flat. His margins are constantly under pressure from buyers who demand year-on-year price reductions. He is utterly exhausted.` },
+      { type: "p", text: `He leans back in his chair, rubs his eyes, and thinks the exact same thought that plagues thousands of other manufacturing founders:\n“We are doing everything right. My quality is 99.8% defect-free. We never miss a delivery schedule. But somehow, the business is not breaking through. We are just surviving on volume, not growing in value.”` },
+      { type: "p", text: `This situation is far more common than most people realise.\nAcross the country, from the industrial estates of Coimbatore to the manufacturing hubs of Manesar and Rajkot, there are thousands of businesses just like this one.\nThey are:\nOperationally strong\nTechnically highly capable\nRun by deeply committed, hardworking founders` },
+      { type: "p", text: `Yet, they remain largely invisible in the broader market.` },
+      
+      { type: "figure", title: "Image 10: The Sea of Sameness", visual: "A sprawling, isometric view of an industrial estate. There are dozens of identical factory sheds with identical smoke stacks. In the middle is one factory glowing or highlighted in a distinct color, representing the 'Brand.'", caption: "Hard work makes you busy. A lack of strategy makes you invisible in a sea of capable competitors." },
+
+      { type: "p", text: `Customers buy from them when needed, usually when a buyer sends out a Request for Quotation (RFQ) to a dozen similar vendors. But these companies are rarely the first name people think of in their category. They are not sought out for their unique expertise. They are treated as interchangeable cogs in the supply chain.\nAnd because of that, growth becomes slow, stressful, and entirely unpredictable.` },
+      { type: "h2", text: `The Marketing Mirage` },
+      { type: "p", text: `When growth stalls, many owners naturally assume the problem is how they are presenting themselves to the world. They believe they have a marketing problem.` },
+      { type: "p", text: `They look at their outdated website, their ten-year-old logo, and the dusty catalogues sitting in their reception area, and they think, “If we just looked more professional, we would get better clients.”` },
+      { type: "p", text: `They believe the solution is:\nA total rebranding and a glossy new website\nHiring aggressive, expensive salespeople\nRunning advertisements in industry magazines\nBooking larger stalls at trade exhibitions like IMTEX or Auto Expo` },
+      { type: "p", text: `So, they spend the money. They hire an agency. They print the new brochures.\nAnd what happens? Very little.` },
+      { type: "p", text: `Perhaps they pick up a few minor orders, but the fundamental trajectory of the business does not change. The new salespeople complain that the prices are too high. The leads from the exhibition turn out to be price-shoppers looking for the cheapest vendor. The glossy website looks great, but it says the exact same things as every other competitor’s website: “We provide high-quality components, on-time delivery, and excellent customer service.”` },
+      { type: "p", text: `They quickly realise that putting a fresh coat of paint on the company does not change how the market values them.\nIn most cases, the real issue lies much deeper than a logo or a sales pitch.` },
+      { type: "h2", text: `The True Diagnosis` },
+      { type: "p", text: `This business is not invisible because of marketing.\nIt is invisible because it lacks strategic focus.` },
+      { type: "p", text: `Over the years, to keep the machines running and people employed, founders take on almost any job that fits their equipment. They make parts for tractors, components for textile machinery, and fittings for the oil and gas sector. They do a little bit of everything for everyone.\nBecause they do everything, they are not famous for anything.` },
+      { type: "p", text: `When a buyer needs a generic part machined, they call. But when they have a complex, high-value problem to solve in a specific application, they don't think of the generalist. They seek out a specialist. And they pay that specialist a premium.` },
+      { type: "p", text: `Strategic focus is something most manufacturing businesses never consciously design. They evolve by accident. They grow by taking whatever opportunities fall into their lap, until one day the founder wakes up trapped in a complex, low-margin business of their own making.\nThey confuse operational excellence—being good at making things—with strategic positioning—being uniquely valuable to a specific market.` },
+      { type: "p", text: `That is the distinction this book will help you see.\nIn the following chapters, we are going to break down exactly why good manufacturers get stuck. We will explore the hidden traps that limit your growth, why your current customers really buy from you, and how to transition from being an invisible, interchangeable vendor to a highly recognised, premium brand in your category.\nIt is time to stop competing purely on price and hard work. It is time to start building a brand.` }
     ]
   },
   {
@@ -94,93 +99,116 @@ const bookData = [
     title: "Chapter 1: The 18-Hour Founder",
     type: "chapter",
     blocks: [
-      { type: "part", text: "Part 1: The Hard Work Trap" },
-      { type: "h1", text: "Chapter 1\nThe 18-Hour Founder" },
-      { type: "p", text: "Most manufacturing businesses begin the exact same way. A highly skilled professional or an ambitious engineer decides to strike out on their own. They rent a small industrial shed, buy a couple of second-hand machines, and start knocking on doors for orders." },
-      { type: "p", text: "In those early years, survival depends entirely on the founder. They handle absolutely everything. They negotiate raw material prices, supervise production runs, calculate quotations, and jump onto the shop floor to solve quality issues." },
-      { type: "p", text: "And because the founder is capable, driven, and willing to work eighteen-hour days, the business actually begins to grow. But something subtle and dangerous happens during this stage. The business becomes entirely, structurally dependent on the founder's personal involvement." },
-      { type: "h2", text: "The Anatomy of the Trap" },
-      { type: "p", text: "Let us look at a typical day for a founder we will call Vikram. Vikram runs a successful injection moulding plant in Faridabad." },
-      { type: "ul", items: [
-        "At 7:30 AM, his phone buzzes. The night shift supervisor needs him to approve a tool adjustment.",
-        "At 10:00 AM, a key customer calls to negotiate a discount. The customer insists on speaking 'only to the boss.'",
-        "At 2:00 PM, a supplier is waiting. The accounts team has prepared the cheque, but cannot release it because Vikram has to sign it.",
-        "At 5:00 PM, a new RFQ comes in. The engineering team has done basic costing, but Vikram has to personally review it."
-      ]},
-      { type: "p", text: "Over time, the founder becomes the absolute centre of every important decision. Nothing major—and often nothing minor—moves without the founder's explicit blessing. This is what we call the Hero Founder Trap." },
-      { type: "figure", title: "The Founder Bottleneck", visual: "An hourglass or a funnel. Dozens of arrows are pouring in (labelled: Sales, Operations, HR, Purchasing, Quality). In the narrow, choked center is a single figure labelled 'The 18-Hour Founder.' At the bottom, only a tiny trickle of progress comes out.", caption: "You cannot scale a business if every decision has to fit through one person’s brain." },
-      { type: "h2", text: "The Psychology of Control" },
-      { type: "p", text: "Why do smart, capable founders let this happen? It is rarely about a lack of intelligence; it is almost always about psychology." },
-      { type: "ul", items: [
-        "The 'Nobody Cares Like I Do' Myth: Because it is the founder's capital on the line, they believe nobody else can care enough to get details right.",
-        "The Trauma of Past Mistakes: Almost every seasoned manufacturer carries a scar from a past disaster where delegated work resulted in massive scrap. They vow never to let a critical part leave without personal inspection.",
-        "The Ego of Being Needed: When the factory floor is in chaos, and the founder walks in and solves the crisis in five minutes, it validates their expertise."
-      ]},
-      { type: "h2", text: "The Financial Cost of the Bottleneck" },
-      { type: "p", text: "You can only work so many hours in a day. When a business is limited by one person's time and energy, it cannot scale. It simply hits a ceiling of complexity." },
-      { type: "p", text: "Every hour a founder spends signing routine supplier cheques or arguing over a 2% discount is an hour they are not spending on high-value strategic work. They are playing the role of a ₹30,000-per-month supervisor while abandoning the ₹500,000-per-month role of a CEO." },
-      { type: "figure", title: "The Desk of Chaos", visual: "A founder's desk completely buried under a mountain of blueprints, raw material invoices, and RFQs. A line of employees is standing at the door waiting for approval, while the phone rings off the hook.", caption: "If every decision has to cross your desk, your business has a hard ceiling on its growth." },
-      { type: "pushback", 
-        myth: "But if I don’t check everything myself, my team makes costly mistakes.", 
-        truth: "You do not have a team; you have a group of highly paid helpers. If your factory cannot produce a perfect batch without your physical presence, you have failed to build standard operating procedures.", 
-        shift: "A true CEO allows their team to make small, controlled mistakes so they can learn to fix them. You must shift from managing tasks to managing systems." 
-      },
-      { type: "pushback", 
-        myth: "My key customers refuse to deal with my sales team. They only want to speak to the owner.", 
-        truth: "Your customers do this because you trained them to do it. Every time you answered their direct call and gave a discount, you taught the customer that your team is powerless.", 
-        shift: "Your customers do not actually want to speak to you; they want fast, authoritative answers. Empower your team to give those answers without checking with the boss." 
-      },
+      { type: "part", text: `Part 1\nThe Hard Work Trap` },
+      { type: "h1", text: `Chapter 1\nThe 18-Hour Founder` },
+      { type: "p", text: `Most manufacturing businesses begin the exact same way.\nA highly skilled professional or an ambitious engineer decides to strike out on their own. They rent a small industrial shed, buy a couple of second-hand machines, and start knocking on doors for orders.` },
+      { type: "p", text: `In those early years, survival depends entirely on the founder.\nThey handle absolutely everything. They negotiate raw material prices with suppliers over endless cups of tea. They supervise the production runs late into the night. They speak to every single customer. They calculate and approve every quotation. They jump onto the shop floor with a spanner in hand to solve minor quality issues.` },
+      { type: "p", text: `And because the founder is capable, driven, and willing to work eighteen-hour days, the business actually begins to grow.\nBut something subtle and dangerous happens during this stage. The business becomes entirely, structurally dependent on the founder's personal involvement.` },
+      { type: "h2", text: `The Anatomy of the Trap` },
+      { type: "p", text: `Let us look at a typical day for a founder we will call Vikram. Vikram runs a successful injection moulding plant in Faridabad. He employs sixty people, runs three shifts, and has a respectable turnover.` },
+      { type: "p", text: `At 7:30 AM, before he has even finished his morning tea, his phone buzzes. It is the night shift supervisor. A machine has been producing parts with slight flash, and they need Vikram to approve a tool adjustment before they continue the run.\nAt 10:00 AM, a key customer calls to negotiate a 2% discount on a bulk order. The sales manager is sitting right there in the office, but the customer insists on speaking "only to the boss."\nAt 2:00 PM, a supplier is waiting in the reception area. The accounts team has prepared the payment cheque, but they cannot release it because Vikram has to sign it.\nAt 5:00 PM, a new Request for Quotation (RFQ) comes in. The engineering team has done the basic costing, but Vikram has to personally review the cycle times and finalise the margins before it can be emailed to the client.` },
+      { type: "p", text: `Over time, the founder becomes the absolute centre of every important decision. Customers expect to speak directly to them. Employees wait for their approval before moving to the next stage of a project. Suppliers negotiate exclusively with them. Nothing major—and often nothing minor—moves without the founder's explicit blessing.` },
       
+      { type: "figure", title: "Illustration 1: The Founder Bottleneck", visual: "An hourglass or a funnel. At the top of the funnel, dozens of arrows are pouring in (labelled: Sales, Operations, HR, Purchasing, Quality). In the narrow, choked center of the hourglass is a single stick figure or icon labelled 'The 18-Hour Founder.' At the bottom, only a tiny trickle of progress is coming out.", caption: "You cannot scale a business if every decision has to fit through one person’s brain." },
+
+      { type: "p", text: `From the outside, this may look like strong, decisive leadership. The founder looks like a titan of industry, managing a complex operation single-handedly.\nBut internally, it creates a massive hidden risk. The business is growing because of the founder's sheer force of will, not because of a replicable system.\nThis is what we call the Hero Founder Trap.` },
+      { type: "p", text: `When a business falls into this trap, the founder works harder and harder to keep the wheels turning. When revenue stalls, their immediate instinct is to simply put in more hours. They try to out-work the problem. But the structure of the business itself never evolves.` },
+      { type: "h2", text: `The Psychology of Control` },
+      { type: "p", text: `Why do smart, capable founders let this happen? Why do they refuse to delegate? It is rarely about a lack of intelligence; it is almost always about psychology.\nFounders get trapped as the primary bottleneck for three specific reasons:` },
+      { type: "p", text: `1. The "Nobody Cares Like I Do" Myth\nFounders possess a level of ownership that an employee will simply never have. Because it is the founder's capital on the line, they believe that nobody else can care enough to get the details right. They watch an employee make a minor mistake, and instead of training them to fix it, the founder steps in, takes over the task, and mutters, "If you want something done right, you have to do it yourself." This creates a self-fulfilling prophecy where employees stop trying because they know the boss will eventually intervene.` },
+      { type: "p", text: `2. The Trauma of Past Mistakes\nAlmost every seasoned manufacturer carries a scar from a past disaster. Five years ago, they let a production manager run a critical batch without supervision, the manager misread the drawing, and three tonnes of expensive raw material were scrapped. The customer threatened to walk away. The trauma of that financial loss fundamentally rewrites the founder's brain. From that day forward, they vow never to let a critical part leave the factory without personally inspecting it. They trade scalability for absolute safety.` },
+      { type: "p", text: `3. The Ego of Being Needed\nThis is the hardest truth for founders to accept. Being the hero feels incredibly good. When the factory floor is in chaos, and the founder walks in and solves the crisis in five minutes, it validates their expertise. When a massive client refuses to speak to anyone but the owner, it strokes the ego. Giving up control means giving up the daily adrenaline rush of being the most important person in the room.` },
+      { type: "h2", text: `The Financial Cost of the Bottleneck` },
+      { type: "p", text: `While the ego stroke might feel good, the financial cost of the Hero Founder Trap is devastating.\nYou can only work so many hours in a day. You can only make so many decisions before fatigue sets in. When a business is limited by one person's time and energy, it cannot scale. It simply hits a ceiling of complexity.\nIf Vikram gets sick for a week, his Faridabad plant slows to a crawl. If he tries to take a holiday with his family, his phone never stops ringing.\nBut the true cost is opportunity cost.` },
+      { type: "p", text: `Every hour a founder spends signing routine supplier cheques, arguing over a 2% discount, or calibrating a machine on the shop floor is an hour they are not spending on high-value strategic work. They are playing the role of a ₹30,000-per-month supervisor while abandoning the ₹500,000-per-month role of a CEO.` },
+      
+      { type: "figure", title: "Image 11: The Desk of Chaos", visual: "A photograph or stylized illustration of a founder's desk completely buried under a mountain of blueprints, raw material invoices, and RFQs. A line of employees is standing at the door waiting for approval, while the phone rings off the hook.", caption: "If every decision has to cross your desk, your business has a hard ceiling on its growth." },
+
+      { type: "p", text: `You cannot build a breakout brand if your head is constantly buried in the operational weeds.` },
+      { type: "h2", text: `Breaking the Trap: The First Handoff` },
+      { type: "p", text: `Escaping the Hero Founder Trap does not mean walking into your office tomorrow and abandoning all your responsibilities. That will simply cause your business to crash.\nEscaping requires a systematic, ruthless uncoupling of your time from daily operations. It starts with handing off just one recurring, low-risk decision.` },
+      { type: "p", text: `Step 1: Identify a High-Frequency, Low-Risk Task\nDo not start by delegating your biggest client. Start with something mundane. For example: approving routine customer discounts up to 5%, or signing off on raw material purchases under ₹50,000.` },
+      { type: "p", text: `Step 2: Build the Boundary (The SOP)\nYou cannot just tell an employee, "Handle this." You must give them a framework. Write down the exact rules you use in your own head to make that decision. “If the customer has paid their last three invoices on time, and the margin remains above 15%, you are authorised to approve a 3% discount without asking me.”` },
+      { type: "p", text: `Step 3: Endure the Withdrawal Period\nThis is where 90% of founders fail. The first time your sales manager uses this new authority, the customer will likely bypass them and call you anyway. Your immediate instinct will be to take the call and negotiate. You must resist. You must politely say, "Amit is fully authorised to handle this account now. Please speak with him." It will feel terrifying. Your employee might even make a minor mistake. Let them. Mistakes are the tuition fee you pay for a scalable business.` },
+
+      { type: "p", text: `The Founder Pushback: Confronting the Control Trap\nWhen confronted with the reality of the Hero Founder Trap, most manufacturing owners immediately become defensive. They believe their micromanagement is a virtue, not a liability. Here are the two most common excuses founders make to justify their 18-hour days, and the brutal truth behind them.` },
+      { type: "pushback", 
+        myth: `“But if I don’t check everything myself, my team makes costly mistakes.”`, 
+        truth: `You do not have a team; you have a group of highly paid helpers. If your factory cannot produce a perfect batch without your physical presence, you have failed to build standard operating procedures. You are relying on your own memory and intuition instead of engineered processes.`, 
+        shift: `A true CEO allows their team to make small, controlled mistakes so they can learn to fix them, rather than swooping in to play the hero every time a machine jams. You must shift from managing tasks to managing systems.` 
+      },
+      { type: "pushback", 
+        myth: `“My key customers refuse to deal with my sales team. They only want to speak to the owner.”`, 
+        truth: `Your customers do this because you trained them to do it. Every time a customer bypassed your sales manager and called your mobile directly, and you answered and gave them a discount, you actively destroyed your employee's authority. You taught the customer that your team is powerless.`, 
+        shift: `Your customers do not actually want to speak to you; they want fast, authoritative answers. If you empower your team to give those answers without putting the customer on hold to "check with the boss," the customer will gladly stop calling your personal number.` 
+      },
+
+      { type: "p", text: `Worksheet: Founder Dependence Check\nTo figure out if your business is stuck in this phase, you need to take an honest look at where the bottlenecks in your daily operations truly lie.\nAnswer the following questions honestly. Do not think about what should happen in theory; think about what actually happened over the last thirty days.\nWho handles these decisions in your company?` },
       { type: "worksheet", 
         id: "ws-founder-dependence",
-        title: "Worksheet: Founder Dependence Check",
-        description: "To figure out if your business is stuck in this phase, you need to take an honest look at where the bottlenecks lie. Answer honestly about what actually happened over the last 30 days.",
+        title: "Founder Dependence Check",
+        description: "",
         questions: [
-          "Who approves customer discounts (even the small ones)?",
-          "Who resolves major customer complaints (whose phone rings first)?",
-          "Who finalises pricing for large orders or new RFQs?",
-          "Who signs off on routine capital expenses (like basic machine repairs)?"
+          `Who approves customer discounts? (Even the small, routine ones).`,
+          `Who resolves major customer complaints? (When a batch is rejected, whose phone rings first?)`,
+          `Who finalises pricing for large orders? * Who decides which new market opportunities or RFQs to pursue?`,
+          `Who signs off on routine capital expenses? (Like buying standard cutting tools or authorising basic machine repairs).`
         ]
-      }
+      },
+      { type: "p", text: `The Diagnosis:\nIf most of your answers to the questions above are “the founder” or "me", your business is highly dependent on one person.\nWhile this level of brutal, hands-on control was absolutely necessary to get your business off the ground in Stage 1, that very same dependence is now the exact thing limiting your future growth. You have become the ceiling of your own company.` }
     ]
   },
   {
     id: "ch2",
-    title: "Chapter 2: Why Good Businesses Plateau",
+    title: "Chapter 2: Why Good Manufacturing Businesses Plateau",
     type: "chapter",
     blocks: [
-      { type: "h1", text: "Chapter 2\nWhy Good Manufacturing Businesses Plateau" },
-      { type: "p", text: "Almost every manufacturing business follows a remarkably similar growth pattern. The danger lies in the fact that the skills required to survive the first two phases are the exact same habits that will trap you in the third." },
-      { type: "h2", text: "Stage 1 — Survival" },
-      { type: "p", text: "In the early years, the only goal is to keep the lights on. The business operates on pure hustle. You take what the market gives you, and you are grateful for it." },
-      { type: "h2", text: "Stage 2 — Growth" },
-      { type: "p", text: "Eventually, the relentless hustle pays off. A few steady customers appear. Revenue begins to grow quickly. The business transitions from a fragile startup into a stable, respectable enterprise. The momentum feels unstoppable." },
-      { type: "h2", text: "Stage 3 — Plateau" },
-      { type: "p", text: "But then, something deeply frustrating happens. The rapid growth simply stops. The company hits a revenue ceiling, and for the next three to five years, revenue fluctuates within a narrow, stubborn band." },
-      { type: "figure", title: "The Growth Plateau", visual: "A line graph. The line climbs aggressively like a steep staircase (labelled: Stage 2: Hustle & Growth), and then abruptly flattens out into a stubborn, horizontal, slightly bumpy line (labelled: Stage 3: The Efficiency Plateau).", caption: "Hard work gets you up the stairs. Only strategy breaks through the ceiling." },
-      { type: "h2", text: "The Efficiency Trap" },
-      { type: "p", text: "When founders hit this plateau, their instinct is to look inward. They open the company chequebook and start investing heavily in operational excellence. They buy faster CNC machines. They implement lean manufacturing. They tighten quality control." },
-      { type: "p", text: "They do everything right. Their scrap rates drop. The factory looks immaculate. But the margins do not improve. Why?" },
-      { type: "p", text: "Because efficiency is not the same as market distinction." },
-      { type: "p", text: "If your only competitive advantage is a machine that anyone with a bank loan can buy, you do not actually have a competitive advantage. You just have a very expensive monthly EMI." },
-      { type: "figure", title: "The Capex Illusion", visual: "A hyper-modern, multi-million-rupee 5-axis CNC machine wrapped in a giant red gift bow, with a massive bank loan document sitting next to it.", caption: "If anyone with a bank loan can buy your competitive advantage, it is not an advantage. It is just expensive overhead." },
+      { type: "h1", text: `Chapter 2\nWhy Good Manufacturing Businesses Plateau` },
+      { type: "p", text: `To understand why a successful company suddenly stops growing, we have to look at how it was built.` },
+      { type: "p", text: `Almost every manufacturing business follows a remarkably similar growth pattern. If you look back at your own history, you will likely recognise these three distinct phases. The danger lies in the fact that the skills required to survive the first two phases are the exact same habits that will trap you in the third.` },
+      { type: "h2", text: `Stage 1 — Survival` },
+      { type: "p", text: `In the early years, the only goal is to keep the lights on.\nImagine a young founder named Arjun starting a sheet metal fabrication unit. In this stage, every single order matters. If a customer walks in with a drawing for a simple electrical panel box, the company makes it. If another customer wants custom stainless steel brackets, they figure out how to make those, too.\nThere is no time to think about long-term strategy, market positioning, or brand equity. The focus is purely on cash flow. Arjun worries about paying the electricity bill, meeting the Friday payroll, and keeping the bank overdraft limit from maxing out.\nThe business operates on pure hustle. You take what the market gives you, and you are grateful for it.` },
+      { type: "h2", text: `Stage 2 — Growth` },
+      { type: "p", text: `Eventually, the relentless hustle pays off.\nA few steady customers appear. Perhaps an original equipment manufacturer (OEM) gives the company a regular monthly schedule for components. Suddenly, revenue begins to grow quickly. The business moves from unpredictable, scattered orders to a steady, reliable rhythm.\nThis is the golden era for the founder. It feels like all the 18-hour days and sleepless nights are finally yielding results.\nProfits are aggressively reinvested into the business. The company buys the adjacent plot of land and expands the shed. New, higher-tonnage press machines and automated laser cutters are added. A quality control manager is hired. The company gets its ISO certification.\nThe business transitions from a fragile startup into a stable, respectable enterprise. Revenue climbs from ₹2 Crore to ₹10 Crore, and then pushes toward ₹25 Crore. The momentum feels unstoppable.` },
+      { type: "h2", text: `Stage 3 — Plateau` },
+      { type: "p", text: `But then, something deeply frustrating happens.\nThe rapid growth simply stops. The company hits a revenue ceiling, and for the next three to five years, revenue fluctuates within a narrow, stubborn band. If the broader economy has a good year, revenue goes up by 5%. If there is a downturn, it drops by 5%.` },
+      
+      { type: "figure", title: "Illustration 2: The Growth Plateau", visual: "A simple line graph. The X-axis is 'Time' and the Y-axis is 'Revenue.' The line starts low, climbs aggressively like a steep staircase (labelled: Stage 2: Hustle & Growth), and then abruptly flattens out into a stubborn, horizontal, slightly bumpy line (labelled: Stage 3: The Efficiency Plateau).", caption: "Hard work gets you up the stairs. Only strategy breaks through the ceiling." },
+
+      { type: "p", text: `The breakout growth of Stage 2 is completely gone.\nWhen founders hit this plateau, their instinct is to look inward. Because hard work and internal improvements solved all their problems in Stages 1 and 2, they assume the problem must be within their own four walls. So, they try to engineer their way out of the plateau.\nThey believe that if they just make the factory better, the market will reward them with more business and higher margins.` },
+      { type: "h2", text: `The Efficiency Trap` },
+      { type: "p", text: `This inward focus leads straight into the Efficiency Trap.\nTo jumpstart growth, the founder opens the company chequebook and starts investing heavily in operational excellence. They buy faster CNC machines imported from Germany or Japan. They implement lean manufacturing processes to eliminate shop-floor waste. They tighten quality control systems to bring defect rates down to near zero. They upgrade their ERP software.\nThey do everything right. Their scrap rates drop. Their cycle times improve. The factory looks immaculate.\nBut the margins do not improve. The revenue does not spike. Why?\nBecause efficiency is not the same as market distinction.` },
+      { type: "p", text: `Founders love buying machines because a machine is tangible. When you spend ₹2 Crore on a new 5-axis machining centre, you can see it. You can touch it. You can measure its output. It feels like progress.` },
+      
+      { type: "figure", title: "Image 12: The Capex Illusion", visual: "A hyper-modern, multi-million-rupee 5-axis CNC machine wrapped in a giant red gift bow, with a massive bank loan document sitting next to it.", caption: "If anyone with a bank loan can buy your competitive advantage, it is not an advantage. It is just expensive overhead." },
+
+      { type: "p", text: `But machine builders sell those exact same machines to your competitors.\nIf your only competitive advantage is a machine that anyone with a bank loan can buy, you do not actually have a competitive advantage. You just have a very expensive monthly EMI.\nThink about it from the buyer’s perspective. Today, having good machines, maintaining tight tolerances, and delivering on time are not unique selling points. They are the absolute minimum requirements just to be invited to quote. They are table stakes.\nYour customer does not care about your internal transformation. The customer still sees you as just one of many similar, highly capable suppliers.\nAnd here is the harsh reality of the industrial market: when customers cannot clearly see a strategic difference between capable suppliers, price becomes the only deciding factor.\nYou buy a million-dollar machine hoping to attract premium clients. Instead, your existing clients simply demand faster deliveries for the exact same price, or worse, ask for a discount because they know your cycle times have improved. You have become better, but you have not become different.` },
+
+      { type: "p", text: `The Founder Pushback: The Quality Illusion\nWhen founders realise their operational improvements are not translating into higher margins, they usually fall back on deeply held industry myths. Here are the two most common excuses founders use to justify their plateau, and the brutal truth behind them.` },
       { type: "pushback", 
-        myth: "I don’t need a brand strategy. My quality is my best marketing. My work speaks for itself.", 
-        truth: "Your work does not speak; it just sits on a pallet. In a mature market, 'excellent quality' is no longer a differentiator; it is an expectation. It's like a restaurant bragging that their food won't make you sick.", 
-        shift: "Quality keeps you from getting fired, but strategy is what gets you hired at a premium. Stop selling the absence of defects and start selling the presence of unique value." 
+        myth: `“I don’t need a brand strategy. My quality is my best marketing. My work speaks for itself.”`, 
+        truth: `Your work does not speak; it just sits on a pallet. In a mature manufacturing market, "excellent quality" is no longer a differentiator; it is an expectation. If a buyer issues an RFQ to five vendors, they automatically assume all five can meet the quality standards, otherwise they wouldn't have been invited to quote. Relying on quality as your marketing strategy is like a restaurant bragging that their food won't make you sick. It is required, but it does not command a premium.`, 
+        shift: `Quality keeps you from getting fired, but strategy is what gets you hired at a premium. You must stop selling the absence of defects and start selling the presence of unique value.` 
+      },
+      { type: "pushback", 
+        myth: `“We just need to buy that new automated machine. Once our cycle times are lower than the competition, we will win all the bids.”`, 
+        truth: `Trying to win a race to the bottom is a dangerous game, because eventually, you might win. If your only strategy to grow is to shave pennies off your cycle time to outbid a competitor, you are actively participating in the commoditisation of your own business. Furthermore, a larger competitor with deeper pockets can always buy a faster machine and beat you at your own game.`, 
+        shift: `Capital expenditure (Capex) without a clear strategic positioning is just expensive overhead. A true CEO does not buy a machine to do the same cheap work slightly faster; they buy a capability to enter a market that competitors cannot easily access.` 
       },
 
+      { type: "p", text: `Worksheet: Growth Plateau Diagnosis\nTo break through the plateau, you have to diagnose exactly where your business structure is currently stuck. You cannot out-work the plateau; you have to out-think it.\nAnswer the following questions using your financial data from the last three to five years. Do not guess—look at the actual numbers in your accounting software.` },
       { type: "worksheet", 
-        id: "ws-growth-plateau",
-        title: "Worksheet: Growth Plateau Diagnosis",
-        description: "Diagnose exactly where your business structure is currently stuck. Look at your actual financial data.",
+        id: "ws-growth-plateau-2",
+        title: "Growth Plateau Diagnosis",
+        description: "",
         questions: [
-          "How has your revenue changed in the last five years? (Staircase or flat line?)",
-          "How many entirely different industries do you currently serve?",
-          "How many different product categories do you manufacture?",
-          "What percentage of your total revenue comes from your top three customers?"
+          `1. How has your revenue changed in the last five years? (Is it climbing aggressively like a staircase, or does it look like a flat line with minor bumps?)`,
+          `2. How many entirely different industries do you currently serve? (e.g., Automotive, Aerospace, Agriculture, Textiles, General Engineering. Count them all.)`,
+          `3. How many different product categories do you manufacture? (Are you making ten variations of a similar part, or hundreds of completely unrelated items?)`,
+          `4. What percentage of your total revenue comes from your top three customers? (Calculate this precisely. If this number is above 60%, your growth is not dictated by the market; it is dictated by the purchasing managers of those three specific companies.)`
         ]
-      }
+      },
+      { type: "p", text: `The Diagnosis:\nThese answers will begin to reveal the hidden architecture of your business. If your revenue is flat, your industry spread is wide, and your customer concentration is dangerously high, you are firmly trapped in Stage 3.\nYour hard work got you here. It will not get you out.` }
     ]
   },
   {
@@ -188,40 +216,55 @@ const bookData = [
     title: "Chapter 3: The Peanut Butter Business",
     type: "chapter",
     blocks: [
-      { type: "part", text: "Part 2: The Invisibility Problem" },
-      { type: "h1", text: "Chapter 3\nThe Peanut Butter Business" },
-      { type: "p", text: "Over time, as a manufacturing company tries to break through its growth plateau, a subtle shift happens. It gradually expands into multiple, unrelated markets. This never happens as a grand, deliberate strategy. It happens one small, seemingly logical decision at a time. It is the death of a business by a thousand 'yeses.'" },
-      { type: "p", text: "Imagine taking a spoonful of peanut butter and trying to spread it across a massive, oversized slice of bread. If you spread it very thinly, the bread is technically covered. But every individual bite contains only a microscopic, unnoticeable amount of peanut butter. The flavour is completely lost." },
-      { type: "figure", title: "The Peanut Butter Spread", visual: "Two side-by-side comparison graphics. Left (The Generalist): A central factory with 15 thin, weak arrows pointing outward in every direction to scattered dots. Right (The Specialist): The same factory, but with three massive, thick arrows pointing directly into a single, tightly clustered group.", caption: "High Chaos, Low Margin vs. High Focus, Premium Margin." },
-      { type: "p", text: "The exact same thing happens when a company spreads its finite resources—its engineering talent, its machine hours, its management focus—across too many unrelated markets." },
-      { type: "h2", text: "The Hidden Cost of Context Switching" },
-      { type: "ul", items: [
-        "The Setup Tax: Every time you switch from making an aluminium roller to a stainless steel valve, operators spend half their shift doing setups instead of cutting metal.",
-        "The Quality Control Nightmare: The QC team is forced to learn entirely different compliance standards every single week. Mistakes are inevitable.",
-        "The Inventory Graveyard: Your raw material store is filled with specialised inserts and obscure grades of steel bought for a single, low-volume project three years ago."
-      ]},
-      { type: "h2", text: "The Blended Margin Illusion" },
-      { type: "p", text: "At the end of the year, the founder sees a blended net profit of 8% and thinks, 'We made money.' What the blended margin hides is the terrifying reality: 20% of their focused, repeatable clients generated almost 15% profit, while the other 80%—the scattered, custom jobs—actually lost money. The good clients are subsidising the bad clients." },
-      { type: "figure", title: "The Blended Margin Illusion", visual: "A pie chart divided into two starkly contrasting sections. A small 20% slice colored deep green, labelled: 'The Core Niche (High Margin, Low Chaos)'. The massive 80% remaining slice is colored red, labelled: 'The Distractions (Low Margin, High Chaos)'.", caption: "Your good customers are subsidising the exhaustion caused by your bad customers." },
-      { type: "p", text: "Founders proudly declare, 'We are a custom manufacturer. If you give us a drawing, we can make anything.' But to a high-value buyer, 'we can make anything' translates to 'we are not specialists at anything.'" },
+      { type: "part", text: `Part 2\nThe Invisibility Problem` },
+      { type: "h1", text: `Chapter 3\nThe Peanut Butter Business` },
+      { type: "p", text: `Over time, as a manufacturing company tries to break through its growth plateau, a subtle shift happens in how it operates. It gradually expands into multiple, unrelated markets.\nThis never happens as a grand, deliberate strategy. It happens one small, seemingly logical decision at a time. It is the death of a business by a thousand "yeses."` },
+      { type: "h2", text: `The Accidental Generalist` },
+      { type: "p", text: `Imagine a precision machining shop in Coimbatore. For its first five years, the company focused almost entirely on machining cast iron components for local pump manufacturers. They were good at it, the operators knew the material intimately, and the business made a decent, predictable margin.\nBut then, a purchasing manager from one of their clients moves to a company that makes textile machinery. He calls the founder and asks, “We need some aluminium rollers machined. You have the CNC turning centres. Can you do it?”\nThe founder looks at a machine sitting idle on the floor. He calculates the hourly rate in his head and says, “Yes, of course.”\nSix months later, a distributor asks if they can manufacture a line of stainless steel industrial valves. The founder looks at the top-line revenue potential and says, “Yes, we can figure that out.”\nLater that year, a supplier mentions a new opportunity to supply small, high-precision brackets for the aerospace sector. It sounds prestigious. The founder wants to tell his friends at the local industrial association that he is in aerospace. He says, “Yes, let us quote for it.”` },
+      { type: "p", text: `Each individual opportunity seems highly attractive in the moment. Each "yes" feels like a smart, entrepreneurial decision that brings in additional revenue.\nBut zoom out and look at the company ten years later. After a decade of saying "yes" to everything, the company ends up serving:\nDozens of different industries\nA massive variety of customer types\nHundreds, or even thousands, of wildly different product variations` },
+      { type: "p", text: `This creates what we call the Peanut Butter Business.` },
+      
+      { type: "figure", title: "Illustration 3: The Peanut Butter Spread", visual: "Two side-by-side comparison graphics. Left Side (The Generalist): A central circle (Your Factory) with 15 thin, weak arrows pointing outward in every direction to scattered dots. Label it: High Chaos, Low Margin. Right Side (The Specialist): The same factory circle, but with three massive, thick arrows pointing directly into a single, tightly clustered group of dots. Label it: High Focus, Premium Margin.", caption: "High Chaos, Low Margin vs. High Focus, Premium Margin." },
 
+      { type: "p", text: `Imagine taking a spoonful of peanut butter and trying to spread it across a massive, oversized slice of bread. If you spread it very thinly across the entire surface, the bread is technically covered. But every individual bite contains only a microscopic, unnoticeable amount of peanut butter. The flavour is completely lost.\nThe exact same thing happens when a company spreads its finite resources—its engineering talent, its machine hours, its management focus—across too many unrelated markets.` },
+      { type: "h2", text: `The Hidden Cost of Context Switching` },
+      { type: "p", text: `When a business spreads itself too thin, the operational chaos on the shop floor skyrockets. Most founders do not see this cost because it does not appear as a line item on the profit and loss statement. But it is bleeding the company dry.` },
+      { type: "p", text: `1. The Setup Tax\nEvery time you switch from making an aluminium textile roller to a stainless steel valve, your operators must tear down the machine setup, change the cutting tools, reprogramme the CNC, and run test pieces. In a highly focused factory, changeovers are rare. In a Peanut Butter Business, operators spend half their shift doing setups instead of cutting metal. You are paying your highly skilled machinists to turn bolts and clean swarf instead of producing billable parts.` },
+      { type: "p", text: `2. The Quality Control Nightmare\nIn a fragmented business, the quality control team is forced to learn entirely different compliance standards every single week. On Monday, they are checking commercial tolerances for an agricultural pump. On Wednesday, they are managing strict traceability documents for an aerospace bracket. Mistakes are inevitable. Scrap rates rise because the team never gets the chance to build deep, repeatable muscle memory for any single product line.` },
+      { type: "p", text: `3. The Inventory Graveyard\nWalk into the tool crib or the raw material store of a Peanut Butter Business. It is a graveyard. You will find specialised carbide inserts, custom fixtures, and obscure grades of steel that were bought for a single, low-volume project three years ago and never used again. That dust-covered inventory is your trapped cash capital.` },
+      { type: "h2", text: `The Blended Margin Illusion` },
+      { type: "p", text: `The ultimate danger of the Peanut Butter Business is how it hides its own failure.` },
+      
+      { type: "figure", title: "Illustration 4: The Blended Margin Illusion", visual: "A simple pie chart or bar graph divided into two starkly contrasting sections. A small 20% slice colored deep green, labelled: The Core Niche (High Margin, Low Chaos). The massive 80% remaining slice is colored red or grey, labelled: The Distractions (Low Margin, High Chaos).", caption: "Your good customers are subsidising the exhaustion caused by your bad customers." },
+
+      { type: "p", text: `At the end of the year, the founder looks at the balance sheet and sees a blended net profit of 8%. They think, "Okay, we survived. We made money."\nWhat the blended margin hides is the terrifying reality of their customer base. If they were to aggressively audit their jobs, they would discover that 20% of their focused, repeatable clients generated almost 15% profit. Meanwhile, the other 80%—the scattered, custom, low-volume "yeses"—actually lost money due to high setup times, scrapped parts, and management distraction.\nThe good clients are subsidising the bad clients.` },
+      { type: "p", text: `But the biggest cost is not operational. The biggest cost is to your reputation.\nWhen asked what their company does, founders of Peanut Butter Businesses usually proudly declare, "We are a custom manufacturer. If you give us a drawing, we can make anything."\nThey think this sounds flexible, capable, and hungry. But to a high-value buyer, "we can make anything" translates to "we are not specialists at anything."` },
+      { type: "p", text: `When you serve fifteen different industries, it becomes impossible to build a dominant reputation in any one of them. You cannot become the undeniable expert in aerospace brackets if 80% of your time is spent worrying about agricultural pumps. The company ends up being known for many things, but truly recognised for none.\nAnd in the manufacturing world, specialists command premiums, while generalists compete on pennies.` },
+
+      { type: "p", text: `The Founder Pushback: The Diversification Myth\nWhen founders are told to stop acting like a generalist machine shop, they usually panic. The idea of pruning their customer list feels like throwing money away. Here are the two most common excuses founders use to defend their Peanut Butter Business, and the brutal truth behind them.` },
       { type: "pushback", 
-        myth: "Serving many industries is how I protect my business. It is diversification.", 
-        truth: "You are confusing fragmented weakness with true diversification. Being a minor, highly replaceable vendor in ten different industries makes you vulnerable to every single market fluctuation.", 
-        shift: "True safety comes from being so deeply integrated and indispensable to one specific market that even in a recession, your customers cannot afford to lose you. A fortress is safer than scattered tents." 
+        myth: `“Serving many industries is how I protect my business. It is diversification. If the automotive sector crashes, I still have agriculture and textiles to keep me afloat.”`, 
+        truth: `You are confusing fragmented weakness with true diversification. Being a minor, highly replaceable vendor in ten different industries does not make you safe; it makes you vulnerable to every single market fluctuation. When the automotive sector drops, you are the first vendor they cut because you are not critical to their supply chain.`, 
+        shift: `True safety does not come from having your fingers in many pies. Safety comes from being so deeply integrated and indispensable to one specific market that even in a recession, your customers cannot afford to lose you. A fortress is safer than a dozen scattered tents.` 
+      },
+      { type: "pushback", 
+        myth: `“But revenue is revenue! If a job covers my variable costs and makes a small contribution to fixed overheads, it is good business.”`, 
+        truth: `All revenue is not created equal. Bad revenue—the complex, low-volume, low-margin jobs that you take just to keep a machine busy—acts like a parasite. It drains your engineering time, causes bottlenecks on the shop floor, and exhausts your best people. Worse, when a highly profitable opportunity finally knocks, your factory is too choked with "bad revenue" to take the order.`, 
+        shift: `You must stop optimising for machine utilisation and start optimising for margin and strategic fit. An idle machine is not your enemy. A busy machine producing zero profit is.` 
       },
 
+      { type: "p", text: `Worksheet: Customer Spread Map\nTo see if you have accidentally built a Peanut Butter Business, you need to map out exactly where your energy is currently going. Do not do this exercise from memory. Open your billing software or ERP and look at the actual data from the last twelve months.` },
       { type: "worksheet", 
         id: "ws-customer-spread",
-        title: "Worksheet: Customer Spread Map",
-        description: "Map out exactly where your energy is currently going to see if you have accidentally built a Peanut Butter Business.",
+        title: "Customer Spread Map",
+        description: "",
         questions: [
-          "List every single industry you currently serve (e.g., Automotive, Med-Tech, General).",
-          "Next to each industry, list the main product types or materials you supply.",
-          "Estimate the percentage of your total revenue each industry brings in.",
-          "Analyze: How much of your management headache is caused by the bottom 20% of your revenue?"
+          `1. List every single industry you currently serve. (e.g., Automotive, Oil & Gas, Medical Devices, Construction, Railways, General Engineering. Write them all down, no matter how small the order was.)`,
+          `2. Next to each industry, list the main product types or materials you supply. (e.g., Cast iron turning, 5-axis aluminium milling, plastic extrusion, heavy sheet metal fabrication).`,
+          `3. Estimate the percentage of your total revenue each industry brings in.`
         ]
-      }
+      },
+      { type: "p", text: `The Diagnosis:\nLook closely at your list. You will likely discover that your business is spread across far more markets than you consciously realised.\nPay special attention to the bottom 20% of your revenue. How many different industries, varied materials, and headache-inducing product variations are you managing just to keep that bottom 20% alive?\nIf your list looks like a chaotic menu at a cheap diner, you are spreading your expertise too thinly to ever be tasted. You are subsidising your own exhaustion.` }
     ]
   },
   {
@@ -229,34 +272,143 @@ const bookData = [
     title: "Chapter 4: The Commodity Trap",
     type: "chapter",
     blocks: [
-      { type: "h1", text: "Chapter 4\nThe Commodity Trap" },
-      { type: "p", text: "When a business spreads itself too thinly across too many markets, it loses its unique edge. It becomes a generalist. And when a manufacturing company loses its edge, it falls straight into the most dangerous, soul-crushing place in the industrial world: The Commodity Trap." },
-      { type: "h2", text: "The Excel Spreadsheet Reality" },
-      { type: "p", text: "To understand the Commodity Trap, you must understand how modern procurement actually works. Purchasing managers are not paid to admire your engineering skills. They are paid to reduce costs." },
-      { type: "p", text: "When they send out an RFQ, they standardise the specifications so that any capable factory can quote on it. They take your complex, beautiful manufacturing business and reduce it to a single row on a massive Excel spreadsheet." },
-      { type: "p", text: "Supplier A: ₹12.50 per piece.\nSupplier B: ₹12.00 per piece." },
-      { type: "p", text: "When your entire business is reduced to a spreadsheet, orders go to the lowest bidder. Margins become razor-thin. You are working incredibly hard just to trade rupees with a corporate buyer who views you as completely replaceable." },
-      { type: "figure", title: "The Spreadsheet Reality", visual: "A stark, zoomed-in view of an Excel spreadsheet. Row 14 says 'Supplier A - ₹12.50.' Row 15 says 'Supplier B - ₹12.00.' A red circle is drawn around the ₹12.00 price.", caption: "To a corporate buyer with no clear differentiator, your life's work is just a row on a spreadsheet." },
-      { type: "h2", text: "The Illusion of 'Quality and Service'" },
-      { type: "p", text: "If you ask a founder why a customer should choose them, they say: 'We maintain excellent quality,' 'We always deliver on time,' and 'We provide great service.' These are incredibly important qualities. But here is the unforgiving truth:" },
-      { type: "p", text: "These are not strategic advantages. They are Operating Imperatives. They are the absolute minimum standard required just to stay in business. When you tell a purchasing manager your advantage is 'quality,' they hear: 'We have brakes.' Every single serious competitor claims the same thing." },
-      { type: "figure", title: "The Value Pyramid", visual: "A three-tiered pyramid. The massive bottom tier is 'Operating Imperatives' (Quality, On-Time Delivery). The middle tier is 'Relationships' (History, Trust). The tiny point at the top is 'Strategic Advantage' (Uncopyable Capability).", caption: "Buyers expect the bottom, they tolerate the middle, but they only pay a premium for the top." },
+      { type: "h1", text: `Chapter 4\nThe Commodity Trap` },
+      { type: "p", text: `When a business spreads itself too thinly across too many markets, it inevitably loses its unique edge. It becomes a generalist. And when a manufacturing company loses its edge, it falls straight into the most dangerous, soul-crushing place in the industrial world: The Commodity Trap.` },
+      { type: "p", text: `Imagine a manufacturer named Amit who runs a highly capable fastener production unit in Ludhiana. He makes high-tensile bolts and precision screws for heavy earthmoving equipment. He has great machines, a skilled workforce, and he runs a tight, efficient ship. He is proud of his business.\nOne day, Amit receives a massive Request for Quotation (RFQ) from a major heavy equipment manufacturer. It is a dream order. It has the volume to keep his cold-forging machines running at full capacity for the next three years.\nAmit’s engineering team spends three days calculating machine hours, material costs, and tooling requirements. They sharpen their pencils. They submit a highly detailed, extremely fair quotation. Amit even includes a cover letter highlighting his ISO certifications and his twenty-year track record of zero defects.\nTwo weeks later, the purchasing manager calls.\n“Amit, your technicals are approved. Your quality looks great. But your price is 4% higher than a vendor in Rajkot. You are L2 (the second lowest bidder). If you can match their L1 price, the order is yours. If not, we have to go with them.”\nAmit is furious, but he is also trapped. He knows the other vendor cannot possibly match his strict quality control protocols. He knows the other vendor will likely delay the shipment and cause headaches on the assembly line.\nBut to the purchasing manager sitting in an air-conditioned corporate office hundreds of miles away, Amit and the vendor in Rajkot are exactly the same.` },
+      { type: "h2", text: `The Excel Spreadsheet Reality` },
+      { type: "p", text: `To understand the Commodity Trap, you must understand how modern procurement actually works.\nPurchasing managers are not paid to admire your engineering skills. They are paid to reduce costs. Their annual bonuses are tied to how much money they can squeeze out of the supply chain.\nTo do this, buyers use a specific tactic: they actively strip away your unique value. When they send out an RFQ, they standardise the specifications so that any capable factory can quote on it. They do not want to hear about your unique culture, your loyal workforce, or your legacy. They take your complex, beautiful manufacturing business and reduce it to a single row on a massive Excel spreadsheet.` },
+      { type: "p", text: `Supplier A: ₹12.50 per piece.\nSupplier B: ₹12.00 per piece.` },
+      
+      { type: "figure", title: "Image 13: The Spreadsheet Reality", visual: "A stark, zoomed-in view of an Excel spreadsheet. Row 14 simply says \"Supplier A - ₹12.50.\" Row 15 says \"Supplier B - ₹12.00.\" A red circle is drawn around the ₹12.00 price. All the history, quality, and legacy of the business are nowhere to be seen.", caption: "To a corporate buyer with no clear differentiator, your life's work is just a row on a spreadsheet." },
+
+      { type: "p", text: `When your entire business is reduced to a spreadsheet, orders go to the lowest bidder. Margins become razor-thin. Profitability turns into a daily knife fight over a few paise.\nThis is the grim reality of the Commodity Trap. You are working incredibly hard, taking all the capital risk, managing all the labour headaches, just to trade rupees with a corporate buyer who views you as completely replaceable.` },
+      { type: "h2", text: `The Illusion of "Quality and Service"` },
+      { type: "p", text: `When manufacturing founders find themselves trapped in this endless cycle of price competition, they often feel deeply misunderstood by the market. They feel insulted that buyers only care about the bottom line.\nIf you ask a founder in the Commodity Trap, “Why should a customer choose you over your cheapest competitor?” they almost always give the exact same three answers:\n“We maintain excellent, defect-free quality.”\n“We always deliver on time.”\n“We provide great customer service and fast responses.”` },
+      { type: "p", text: `Founders say this with immense pride. They know how hard it is to maintain strict quality standards. They know how many sleepless nights go into ensuring a truck leaves the dispatch bay on time when a machine breaks down at 2:00 AM.\nThese are incredibly important qualities. But here is the brutal, unforgiving truth of the modern industrial market:\nThese are not strategic advantages. In today's highly competitive manufacturing landscape, quality and on-time delivery are no longer unique selling propositions. They are Operating Imperatives.` },
+      { type: "p", text: `An Operating Imperative is the absolute minimum standard required just to stay in business. It is table stakes. If you do not have good quality and on-time delivery, you do not even get invited to quote.\nThink of it like buying a car. When you walk into a dealership, do you ask the salesman if the car comes with brakes that work? No. You assume the brakes work, because if they didn't, the car wouldn't be legally allowed on the road.\nWhen you tell a purchasing manager that your main advantage is "quality," they hear: "We have brakes." Every single serious competitor you face also claims to deliver top-tier quality and perfect reliability. Even the cheap, unreliable vendor in Rajkot wrote “100% Quality Guaranteed” on their quotation.` },
+      
+      { type: "figure", title: "Illustration 5: The Value Pyramid", visual: "A three-tiered pyramid. The massive bottom tier is labelled \"Operating Imperatives\" (Quality, On-Time Delivery, ISO Certifications). The middle tier is labelled \"Relationships\" (History, Trust, Handshakes). The tiny, sharp point at the top is labelled \"Strategic Advantage\" (Uncopyable Capability, Deep Specialisation).", caption: "Buyers expect the bottom, they tolerate the middle, but they only pay a premium for the top." },
+
+      { type: "p", text: `When your marketing pitch is identical to everyone else's, the buyer’s brain simply tunes it out. If the buyer believes that Supplier A and Supplier B both offer "great quality and service," then the only logical way to choose between them is price.\nBy relying on generic promises, you are accidentally telling the market that your products are commodities.\nTo escape the Commodity Trap, you have to dig much deeper. You have to find a reason for customers to choose you that goes beyond the basic expectations of doing business. You must move from an Operating Imperative to a true Strategic Advantage.` },
+
+      { type: "p", text: `The Founder Pushback: The "Relationship" Myth\nWhen founders are confronted with the reality of commoditisation, they often cling to the past. They believe their historical ties will save them from price cuts. Here are the two most common excuses founders make when defending their generic positioning, and the brutal truth behind them.` },
       { type: "pushback", 
-        myth: "Price isn't everything. I have deep, twenty-year relationships with my buyers.", 
-        truth: "Personal relationships are a fantastic door-opener, but a terrible long-term strategy. The buyer you've known for twenty years will retire. They will be replaced by a 26-year-old MBA who has a corporate mandate to cut costs by 8%.", 
-        shift: "Relationships get you in the room; undeniable strategic value keeps you in the room. Build a business that relies on structural advantages, not just handshakes." 
+        myth: `“Price isn't everything. I have deep, twenty-year relationships with my buyers. They trust me, and they won't leave me for a cheaper vendor.”`, 
+        truth: `Personal relationships are a fantastic door-opener, but they are a terrible long-term strategy. The buyer you have known for twenty years is going to retire. They will be replaced by a twenty-six-year-old MBA graduate who does not know you, does not care about your history, and has been given a strict mandate by corporate to cut supply chain costs by 8%. When that happens, your "relationship" disappears overnight, and you are right back on the Excel spreadsheet.`, 
+        shift: `Relationships get you in the room; undeniable strategic value keeps you in the room. You must build a business that relies on structural advantages, not just friendly handshakes.` 
+      },
+      { type: "pushback", 
+        myth: `“If I raise my prices to reflect my true value, I will lose all my clients.”`, 
+        truth: `You should lose the clients who only care about price. If a client is willing to abandon you over a 2% price difference despite your flawless track record, they were never your partner. They were a mercenary. Clinging to bad, low-margin clients prevents you from having the capacity to serve high-margin clients who actually value your expertise.`, 
+        shift: `A strong brand repels as much as it attracts. You must be willing to let the price-shoppers walk away so you can focus entirely on the value-buyers.` 
       },
 
+      { type: "p", text: `Worksheet: Why Do Customers Really Choose Us?\nThis exercise requires brutal honesty. You have to look past the generic answers and try to find the actual, specific reasons your best customers stay with you.\nList the real reasons customers select your company. As you write them down, put them through the "So Does Everyone Else" Test.\nIf your competitor can easily make the exact same claim on their website, cross it out immediately. It is an Operating Imperative, not a Strategic Advantage.` },
+      { type: "p", text: `Common (Generic) Answers that FAIL the test:\n“We have ISO 9001 certification.” (So does everyone else).\n“We offer competitive pricing.” (So does everyone else).\n“We have state-of-the-art CNC machines.” (So does everyone else).\n“We have a dedicated workforce.” (So does everyone else).` },
+      { type: "p", text: `Strong (Specific) Answers that PASS the test:\n“We are the only supplier in our region who can consistently hold a 5-micron tolerance on titanium aerospace components without a high scrap rate.”\n“We offer a vendor-managed inventory system for our top OEM clients, meaning they never have to carry safety stock on their own books. We integrate directly into their ERP.”\n“We specialise exclusively in high-mix, low-volume production runs with exotic alloys that larger, rigid factories refuse to touch.”` },
       { type: "worksheet", 
-        id: "ws-real-choice",
-        title: "Worksheet: Why Do Customers REALLY Choose Us?",
-        description: "List the real reasons customers select your company. Put them through the 'So Does Everyone Else' Test. If your competitor can claim it, cross it out.",
+        id: "ws-real-choice-2",
+        title: "Why Do Customers REALLY Choose Us?",
+        description: "What makes your company genuinely different? Gather your leadership team. If a customer had a gun to their head and was forced to justify paying you 10% more than your competitor, what exact, specific reason would they give?",
         questions: [
-          "Reason 1: (If it's 'ISO Certified' or 'Good Quality', cross it out)",
-          "Reason 2: (Be specific. e.g., 'Only supplier holding 5-micron tolerance on titanium locally')",
-          "Reason 3: (e.g., 'Vendor-managed inventory directly integrated into OEM ERP')",
-          "If a customer had a gun to their head and was forced to justify paying you 10% MORE than your competitor, what exact reason would they give?"
+          `Reason 1:`,
+          `Reason 2:`,
+          `Reason 3:`
         ]
+      },
+      { type: "p", text: `The Diagnosis:\nIf you and your team stared at a blank page and struggled to find three specific, non-generic reasons, do not panic. This is exactly why your margins are under pressure. Your buyers cannot see your value because you have not clearly defined it yourself. Recognising the trap is the first and most painful step to climbing out of it.` }
+    ]
+  },
+  {
+    id: "ch5",
+    title: "Chapter 5: Brand Is Not Marketing",
+    type: "chapter",
+    blocks: [
+      { type: "part", text: `Part 3\nWhat Brand Really Means in Manufacturing` },
+      { type: "h1", text: `Chapter 5\nBrand Is Not Marketing` },
+      { type: "p", text: `When manufacturing business owners finally realise they are stuck in the Commodity Trap, their first instinct is usually to spend money to get out of it.\nThey look at the massive, multi-national companies in their industry that command premium prices—the undisputed market leaders—and they try to copy what is visible on the surface. They see glossy brochures, massive exhibition stalls, and sleek logos, and they assume that is the secret to high margins.` },
+      { type: "p", text: `Consider a founder named Sanjay, who runs a pneumatic valve manufacturing unit in Bengaluru. Tired of losing orders for a few rupees and exhausted by the daily grind of the Peanut Butter Business, Sanjay decides it is time to stop being a vendor and start building a "brand."\nHe hires a flashy corporate marketing agency.\nThe agency does what agencies do. They sit in Sanjay’s boardroom and talk about "synergy," "brand pillars," and "storytelling." Over the next six months, Sanjay spends a small fortune. The agency designs a sleek, modern logo using the colour blue to visually signify "trust and reliability." They build a beautiful new website featuring expensive drone footage sweeping over his factory floor. They print heavy-stock product catalogues. They even launch a social media campaign with professionally written posts about innovation.` },
+      { type: "p", text: `Sanjay sits back, enormously proud of the new look, expecting the high-margin orders to start rolling in.\nInstead, the phone rings with the exact same type of enquiries from the exact same price-sensitive buyers. When his sales team goes out into the field with the new glossy brochures, the purchasing managers simply flip past the beautiful "About Us" page, turn to the back table of technical specifications, and say, “Looks good. What is your best discount?”` },
+      { type: "p", text: `Sanjay is baffled. He bought the logo. He built the website. He paid for the marketing. Why does he not have a brand?\nBecause in industrial markets, brand is not marketing.` },
+      { type: "h2", text: `The B2C Illusion in a B2B World` },
+      { type: "p", text: `The confusion happens because we are all consumers in our daily lives. We are surrounded by Business-to-Consumer (B2C) brands like Apple, Nike, and Coca-Cola. For those companies, brand is heavily tied to marketing, emotion, lifestyle, and visual identity. A consumer buys a pair of Nike shoes because of the emotional feeling the marketing creates.\nBut Business-to-Business (B2B) manufacturing operates in a completely different psychological universe.` },
+      
+      { type: "figure", title: "Illustration 6: The B2B Buying Brain", visual: "A weighing scale. On one side of the scale is a box labelled \"Price.\" On the heavier side, tipping the scale entirely, is a massive anvil labelled \"Risk of Failure (Getting Fired).\"", caption: "In consumer markets, buyers look for status. In industrial markets, buyers look for risk mitigation." },
+
+      { type: "p", text: `An industrial buyer is not buying a pair of shoes to feel athletic. An engineering head is not buying a machined casting to feel cool. They are buying components to solve complex, high-stakes technical problems without getting fired. In B2C, buyers are looking for status. In B2B manufacturing, buyers are looking for risk mitigation.` },
+      { type: "p", text: `If a purchasing manager buys a cheap, generic valve and it fails, shutting down a multi-million-rupee assembly line, that manager loses their job. They do not care how nice your drone footage looks. They care about whether you can eliminate the risk of failure.\nIn the manufacturing world, a strong brand is not a logo. A strong brand is created when a company becomes the absolute, obvious choice for a specific type of problem.\nClarity creates the brand. Advertising simply announces it.` },
+      { type: "h2", text: `The Capability as the Brand` },
+      { type: "p", text: `Let us look at what a true industrial brand looks like in practice. It is rarely about having a clever tagline. It is about being universally associated with a clear, specific capability.\nWhen you possess a specific capability that solves a specific problem, your reputation precedes you. Here are three examples of true industrial branding:` },
+      { type: "p", text: `1. Precision Machining for Aerospace Parts\nIf a company focuses relentlessly on aerospace, its "brand" is not its website. Its brand is its culture of absolute traceability. Its brand is the fact that it can consistently hold a 5-micron tolerance on titanium without a high scrap rate, and that every single piece of material is documented from the mill to the final inspection table. When an aerospace procurement officer thinks of them, the immediate mental association is zero-defect reliability.` },
+      { type: "p", text: `2. Stainless Steel Fabrication for Food Processing Equipment\nIf a company targets the food and beverage industry, its brand is built on hygiene standards. Its brand is the institutional knowledge of how to execute flawless TIG welding without any microscopic crevices where bacteria can hide. A dairy plant manager does not care about their logo; they care that the fabricator understands food-grade compliance better than anyone else in the country. That expertise is the brand.` },
+      { type: "p", text: `3. High-Volume Injection Moulding for Automotive Components\nFor a tier-one automotive supplier, the brand is scale and systems. It is the undeniable ability to manage strict PPAP (Production Part Approval Process) documentation, operate flawless just-in-time (JIT) delivery schedules, and run massive, multi-cavity moulds over millions of cycles without degradation.` },
+      { type: "p", text: `In each of these cases, the company is associated with a clear, undeniable capability.\nWhen a buyer in those specific industries faces a critical problem, they do not Google "general manufacturer near me." They do not look for the nicest logo. They look for the specialist. They think, “We have a critical precision-grade welding issue. Call the automotive guys.”` },
+      
+      { type: "figure", title: "Image 14: Paint on a Broken Engine", visual: "A rusty, clunky, disorganized mechanical engine. A hand holding a paintbrush is applying a coat of bright, glossy, expensive paint over the rust.", caption: "A slick website and a new logo won't fix a broken, commoditized business model. Fix the engine before you paint the car." },
+
+      { type: "p", text: `That mental shortcut—that immediate, trusted association between a specific problem and your specific company—is what actually creates a brand.\nMarketing can amplify a brand once it exists, but it cannot create one out of thin air. You cannot market your way out of a fundamentally unfocused, generic business model.` },
+
+      { type: "p", text: `The Founder Pushback: The "Awareness" Trap\nWhen founders are told that their new logo and website will not save their margins, they often push back by claiming that they just need to reach more people. Here are the two most common excuses founders use to justify wasting money on generic marketing, and the brutal truth behind them.` },
+      { type: "pushback", 
+        myth: `“We just need to get our name out there. We need more awareness. If more people know about us, we will get more orders.”`, 
+        truth: `Awareness of a commodity simply makes you a widely known commodity. If your underlying business is a Peanut Butter Business—unfocused and undifferentiated—spending money on advertising is just paying to tell more people that you are exactly the same as everyone else. It will generate a massive influx of low-quality, price-shopping leads that will exhaust your sales team.`, 
+        shift: `It is infinitely more profitable to be famous to a few than invisible to many. Stop trying to get your name in front of everyone, and start focusing on becoming the only logical choice for a specific subset of high-value buyers.` 
+      },
+      { type: "pushback", 
+        myth: `“But our current website looks outdated! If we don't look like a premium company, we cannot charge premium prices.”`, 
+        truth: `A slick website is like a fresh coat of paint on a broken engine. Yes, basic professionalism is required. But if a buyer visits your beautiful new website and reads the exact same generic promises ("quality, service, on-time delivery") that your cheapest competitor makes, the premium illusion shatters instantly. Buyers are not stupid. They buy engineering capability, not web design.`, 
+        shift: `Fix the engine before you paint the car. You must build a highly focused, highly valuable strategic capability first. Once you actually have a distinct advantage, then you can build a website to communicate it.` 
+      },
+
+      { type: "p", text: `Worksheet: Market Perception Exercise\nTo figure out if you actually have a brand, you need to understand how the market currently perceives you. This is rarely the same as how you perceive yourself.\nDo not answer these questions in a vacuum. Do not send out a generic email survey. Pick up the phone and directly ask three of your oldest customers and three of your newest customers.` },
+      { type: "worksheet", 
+        id: "ws-market-perception",
+        title: "Market Perception Exercise",
+        description: "Ask yourself (and your market):",
+        questions: [
+          `1. What specific type of work is our company currently known for? (If a customer refers you to a friend in the industry, what exactly do they say you are good at? Do they say "they are cheap and fast," or do they say "they solve our toughest engineering problems"?)`,
+          `2. If our competitors had to describe us in one sentence, what would they say? (Competitors are often brutally honest. Do they see you as a volume player, a generalist, or a serious threat in a specific niche?)`,
+          `3. If we completely stopped manufacturing tomorrow, who would genuinely miss us, and why? (Be brutally honest here. If your answer is "nobody, our clients would just buy from the guy down the street for the same price," you do not have a brand. You have a commodity.)`
+        ]
+      },
+      { type: "p", text: `The Diagnosis:\nIf your market perception is vague, or if it centres purely on "they are easy to work with and competitively priced," then all the marketing dollars in the world will not save your margins. You have to change the underlying capability before you change the brochure.` }
+    ]
+  },
+  {
+    id: "ch6",
+    title: "Chapter 6: The Power of Strategic Focus",
+    type: "chapter",
+    blocks: [
+      { type: "h1", text: `Chapter 6\nThe Power of Strategic Focus` },
+      { type: "p", text: `If spreading your resources too thinly across dozens of industries is the disease, then strategic focus is the cure.\nBut focus is terrifying. For a manufacturing founder who has spent their entire career fighting tooth and nail for every single purchase order, the idea of intentionally turning away work feels completely unnatural. It feels reckless. It feels like business suicide.\nFounders are biologically and financially wired to say "yes" to revenue. But to build a highly profitable industrial brand, you have to master the psychology of saying "no."` },
+      { type: "h2", text: `The Terror of the Turnaround` },
+      { type: "p", text: `Let us look at a founder named Meera, who runs a wire harness and cable assembly plant in Chennai.\nFor the first ten years of her business, Meera operated a classic Peanut Butter Business. She manufactured wiring for cheap electric scooters, washing machines, and a few medical device companies. Her factory was chaotic, her margins were constantly squeezed by the appliance manufacturers, and her revenue had flatlined at ₹15 Crore. She was exhausted, and her best engineers were burning out from the constant context-switching.` },
+      { type: "p", text: `One day, Meera makes a radical decision.\nShe looks at her data and realises that while the washing machine and scooter contracts make up 70% of her volume, they generate almost zero net profit after accounting for setups and rejections. The medical device contracts make up only 30% of her volume, but they carry massive margins and demand high-level engineering.` },
+      { type: "p", text: `So, she does the unthinkable. When the washing machine company asks for their annual 5% price reduction on the next contract, Meera politely declines the order. When a new e-rickshaw company asks for a quotation, she refuses to quote.\nInstead, she pivots her entire facility to focus exclusively on complex wiring harnesses for medical diagnostic equipment—like MRI machines, patient monitors, and ventilators.` },
+      { type: "h2", text: `The Inevitable Dip` },
+      { type: "p", text: `What happens next is the hardest part of strategy.\nIn the short term, Meera’s revenue takes a massive hit. Her top-line turnover drops from ₹15 Crore to ₹8 Crore. Her production floor, which used to be buzzing with chaotic energy 24/7, suddenly has quiet corners. Her sales team panics and begs her to take back the washing machine contracts.\nMeera is terrified. She is experiencing "The Dip"—the painful transition period where you have fired your bad customers but have not yet fully acquired your new, high-value ones.` },
+      
+      { type: "figure", title: "Illustration 7: 'The Dip'", visual: "A dual-line graph showing the painful transition of focusing. The first line (Revenue) takes a sharp, terrifying dip downward before slowly climbing back up. The second line (Profit Margin) starts low, but immediately begins climbing upward as the bad revenue is cut.", caption: "Firing bad clients causes a temporary dip in revenue, but an immediate spike in sanity and pricing power." },
+
+      { type: "p", text: `But Meera holds her nerve. And because she is no longer distracted by building cheap cables for washing machines at a break-even price, the magic of strategic focus begins to compound. She channels 100% of her company’s capital, time, and engineering bandwidth into becoming the undisputed expert in medical wiring.\nStrong manufacturing businesses rarely try to serve every possible market. Instead, they embrace the short-term discomfort of The Dip to gradually develop a reputation in specific, highly defensible areas.` },
+      { type: "p", text: `Here is exactly what happens when a company like Meera’s embraces absolute focus:` },
+      { type: "p", text: `1. Deeper, Uncopyable Expertise\nWhen Meera drops the generic work, her engineering team stops acting as generalists. They study the strict ISO 13485 standards for medical devices. They invest in Class 100,000 cleanroom assembly areas. They master the use of biocompatible materials that can withstand harsh chemical sterilisation. They are no longer just cutting and crimping copper wires; they are building life-saving compliance systems. Their technical capability skyrockets past the generalist competitors. They become elite.` },
+      { type: "p", text: `2. Stronger Customer Relationships\nIn the past, Meera’s sales team had to sit in the reception lobby for hours, waiting to beg a purchasing manager for a scooter contract. Now, when Meera meets with a procurement head from a major European medical OEM, the dynamic is completely inverted. She does not sound like a desperate vendor. She speaks their exact regulatory language. She anticipates their compliance headaches before they even mention them. The OEM stops treating her like an interchangeable supplier and invites her into their R&D lab to co-design the next product. Trust deepens into dependency.` },
+      { type: "p", text: `3. Absolute Pricing Power\nThe washing machine companies used to argue with Meera over fractions of a rupee because a wire harness in a washing machine is a commodity. But the medical OEMs do not argue over price. Why? Because a failed wire harness in a ventilator could cost a patient's life, trigger a massive international recall, and destroy the OEM's entire corporate reputation.\nThey are not looking for the cheapest vendor. They are looking for absolute, bulletproof certainty. Because Meera is the recognised specialist who provides that certainty, she dictates her own pricing. When the cost of failure is astronomical, price elasticity disappears.` },
+      { type: "h2", text: `The Formula for Brand` },
+      { type: "p", text: `Over time, Meera’s singular focus turns into a formidable reputation within the medical device industry.\nWhen a new medical startup needs complex wiring, investors and industry veterans tell them, "Do not risk your FDA approval with a general job shop. Go to Meera's company in Chennai. They are the medical wiring people."\nMeera did not build this reputation by running advertisements. She built it by making a hard, terrifying strategic choice about where she would compete, and more importantly, where she would not compete. She accepted the short-term drop in revenue to secure long-term pricing power.` },
+      { type: "p", text: `This is the ultimate secret of the industrial market.\nFocus turns into reputation. And reputation becomes brand.\nBrand is the outcome of strategic focus.` },
+
+      { type: "p", text: `The Founder Pushback: The Fear of the Void\nWhen founders hear stories like Meera's, they intellectually understand the logic, but their operational instincts fight back aggressively. The idea of intentionally reducing top-line revenue triggers deep survival anxieties. Here are the two most common excuses founders use to avoid making a strategic choice, and the brutal truth behind them.` },
+      { type: "pushback", 
+        myth: `“Saying 'no' to orders means my machines will sit idle. I cannot afford idle machines; my overheads will kill me.”`, 
+        truth: `You are worshipping at the altar of machine utilisation instead of profitability. Running a machine at 100% capacity on a zero-margin job actually destroys wealth. It burns electricity, wears down your spindles, and exhausts your labour force, all for the privilege of trading rupees with a cheap customer.`, 
+        shift: `An idle machine is not a liability; it is strategic capacity waiting for a highly profitable order. You must stop viewing idle time as a failure and start viewing it as the breathing room required to retool your factory for premium work. Margin is sanity; volume is vanity.` 
+      },
+      { type: "pushback", 
+        myth: `“What if I choose the wrong niche? If I focus entirely on one sector and it crashes, my business goes bankrupt.”`, 
+        truth: `Doing nothing is a choice, and it is the riskiest choice of all. If you stay a generalist, you are guaranteed to be slowly squeezed to death by cheaper competitors and demanding buyers. Yes, choosing a focus carries risk. But it is a calculated risk where you have the power to build a defensive moat.`, 
+        shift: `Strategy is about making a bet on where you can win. You mitigate the risk of choosing the "wrong" niche by deeply researching the market, ensuring you have a true capability advantage, and then committing fully. It is better to be a dominant force in a single, well-chosen sector than a weak, invisible player in ten.` 
       }
     ]
   },
@@ -265,19 +417,39 @@ const bookData = [
     title: "Chapter 7: The Real Growth Problem",
     type: "chapter",
     blocks: [
-      { type: "part", text: "Part 4: The Strategic Awakening" },
-      { type: "h1", text: "Chapter 7\nThe Real Growth Problem" },
-      { type: "p", text: "When a manufacturing company hits a growth wall, the founder's initial reaction is tactical. They conclude the business simply needs more volume. So they try to hire a highly paid VP of Sales." },
-      { type: "p", text: "Hiring a brilliant, highly paid salesperson to sell a commoditised, unfocused business is like putting a Formula 1 driver behind the wheel of a tractor and expecting to win a race. The driver is not the problem; the vehicle is fundamentally incapable of the task." },
-      { type: "figure", title: "The Rainmaker Myth", visual: "A sleek, high-tech Formula 1 steering wheel attached to a rusted, clunky farm tractor.", caption: "Hiring an expensive VP of Sales to sell an unfocused, commoditised business is like putting an F1 driver in a tractor. The driver isn't the problem." },
-      { type: "h2", text: "The Accumulation of Business" },
-      { type: "p", text: "The issue keeping your business invisible is not a lack of marketing. The real issue is that the company never clearly, definitively decided two things:\n1. Where it should compete.\n2. How it should win." },
-      { type: "p", text: "Instead of making deliberate, hard choices about the future, the business simply accumulated over time. Like barnacles attaching themselves to the hull of a ship, random opportunities accumulated year after year." },
-      { type: "p", text: "There is a profound difference between operational effort and strategic positioning. Operational effort is fighting fires on the shop floor. Strategic positioning is stepping back and asking, 'Are we even fighting the right battles? Are we playing a game we can actually win?'" },
+      { type: "part", text: `Part 4\nThe Strategic Awakening` },
+      { type: "h1", text: `Chapter 7\nThe Real Growth Problem` },
+      { type: "p", text: `When a manufacturing company hits a growth wall, the founder's initial reaction is almost always tactical. Because founders are natural problem solvers, they look for a quick, external fix to what is actually a deep, internal, structural problem.\nUsually, they conclude that the business simply needs more volume. And to get more volume, they assume they need better sales.` },
+      { type: "h2", text: `The Rainmaker Myth` },
+      { type: "p", text: `Consider a founder named Prakash. He runs a heavy steel fabrication unit in Hyderabad. Over fifteen years, Prakash has built a massive facility with overhead cranes, automated welding bays, and a hundred-person workforce. But for the last four years, his margins have been stuck at a dangerous 6%, and his revenue has barely moved from the ₹40 Crore mark.` },
+      { type: "p", text: `Prakash sits in his boardroom, stares at his flatline revenue graph, and writes down what he believes are the root causes of his stagnation:\nLimited marketing budget\nInsufficient sales effort in the field\nWeak distribution channels` },
+      { type: "p", text: `Prakash decides to take aggressive action. He is going to buy his way out of the plateau. He posts a job listing for a Vice President of Sales and poaches a highly paid executive from a larger corporate competitor. He gives this new VP a massive salary, a premium car allowance, and a mandate to "go out there and get more business."\nTo support the new VP, Prakash buys an expensive CRM software and prints new corporate profiles. He feels a surge of hope. Finally, someone else is going to drive the top line.` },
+      { type: "p", text: `Six months later, the hope has turned into bitter frustration.\nThe new VP is knocking on doors, attending industry conferences, and submitting dozens of quotations. But the conversion rate is abysmal. When Prakash demands an explanation, the VP sits in the office, exasperated, and says:\n"Prakash, I am getting us into the room. But every single procurement head asks me the exact same question: 'Why should we shift our fabrication work to you? What makes you different from our current vendor?' Because we are just another general fabrication shop, I have no good answer. The only lever I have to close the deal is to cut our price by 5%. But you won't let me drop the price."` },
+      { type: "p", text: `Prakash did not have a sales problem. He had a strategy problem.` },
+      
+      { type: "figure", title: "Illustration 8: The Rainmaker Myth", visual: "A humorous but painful icon graphic. A sleek, high-tech Formula 1 steering wheel attached to a rusted, clunky farm tractor.", caption: "Hiring an expensive VP of Sales to sell an unfocused, commoditised business is like putting an F1 driver in a tractor. The driver isn't the problem." },
+
+      { type: "p", text: `Hiring a brilliant, highly paid salesperson to sell a commoditised, unfocused business is like putting a Formula 1 driver behind the wheel of a tractor and expecting to win a race. The driver is not the problem; the vehicle is fundamentally incapable of the task.` },
+      { type: "h2", text: `The Accumulation of Business` },
+      { type: "p", text: `After examining your own business through the lens of the previous chapters, a very different picture of your growth challenges should be emerging.\nThe issue keeping your business invisible is not a lack of marketing. It is not a lazy sales team. It is not a poorly designed website.\nThe real issue is that the company never clearly, definitively decided two things:\n1. Where it should compete.\n2. How it should win.` },
+      { type: "p", text: `Instead of making deliberate, hard choices about the future, the business simply accumulated over time.\nThink back to your early days in Stage 1. When you first started, you didn't have the luxury of strategy. You took the first order that walked through the door to pay the electricity bill. Then, a supplier recommended you to someone else for a completely different type of part, and you took that order too. Then, a machine had open capacity on a Tuesday, so you found a completely unrelated job just to keep the spindle turning.` },
+      { type: "p", text: `Like barnacles attaching themselves to the hull of a ship, these random opportunities accumulated year after year.\nYou built an entire team to support this accumulation. You bought machines to process this accumulation. You took out massive bank loans to finance the working capital for this accumulation.\nAnd suddenly, fifteen years later, you find yourself at the helm of a massive, heavy, slow-moving vessel. The business works incredibly hard. The shop floor is buzzing with chaotic energy. The dispatch trucks are leaving every night.\nBut because the business was accumulated by accident rather than designed by intention, it completely lacks a clear strategic position in the market. It is a giant, highly efficient ship sailing without a compass.` },
+      { type: "h2", text: `Working Hard vs. Strategic Positioning` },
+      { type: "p", text: `There is a profound difference between operational effort and strategic positioning. Founders constantly confuse the two.\nOperational effort is waking up at 6:00 AM, fighting fires on the shop floor, arguing with vendors over raw material prices, ensuring the dispatch goes out on time, and tracking OEE (Overall Equipment Effectiveness). It is exhausting, highly necessary work. But it is just running in place.` },
+      { type: "p", text: `Strategic positioning is stepping back from the fire-fighting and asking, "Are we even fighting the right battles? Are we playing a game we can actually win, or are we just volunteering to be a low-margin vendor for the rest of our lives?"` },
+      { type: "p", text: `Most manufacturing founders are so deeply trapped in the daily dopamine rush of operational effort—solving immediate, tangible problems—that they never pause to design their strategic position. They assume that if they just keep working harder, the strategy will somehow figure itself out. It will not. Hard work scales the chaos; only strategy scales the profit.` },
+      { type: "p", text: `The moment of the "Strategic Awakening" happens when a founder finally accepts that hard work alone will no longer grow the company. You cannot sweat your way out of the Commodity Trap. You cannot sell your way out of a Peanut Butter Business.\nTo break through the plateau, you must stop accumulating random orders and start making deliberate, strategic choices. You must finally answer the questions that separate the vendors from the brands.` },
+
+      { type: "p", text: `The Founder Pushback: The "More Leads" Illusion\nWhen confronted with the reality that their business model—not their sales team—is the problem, founders often aggressively resist. They want a tactical fix, not a strategic overhaul. Here are the two most common excuses founders make when their sales stall, and the brutal truth behind them.` },
       { type: "pushback", 
-        myth: "I don’t need to change my business model. I just need to poach my competitor’s top salesperson to bring their book of business.", 
-        truth: "A top salesperson at a highly differentiated company looks like a genius because they are selling a brilliant strategy. If you bring them into a generic business, they will fail and resort to asking for price cuts.", 
-        shift: "A great salesperson amplifies a great strategy; they cannot invent one. Give your sales team a structural advantage to sell." 
+        myth: `“I don’t need to change my business model. I just need to poach my competitor’s top salesperson. If I bring them over, they will bring their book of business with them.”`, 
+        truth: `This is the most expensive mistake in B2B manufacturing. A top salesperson at a highly differentiated company looks like a genius because they are selling a brilliant strategy. If you bring that same person into your generic, commoditised business, they will fail spectacularly. They will quickly realise they have no unique value to sell, and they will resort to asking you for price cuts to hit their targets.`, 
+        shift: `A great salesperson amplifies a great strategy; they cannot invent one. You must give your sales team a structural advantage to sell, otherwise, you are just paying them to hand out discounts.` 
+      },
+      { type: "pushback", 
+        myth: `“My sales team is fine, they just need more leads. We need to run more ads, go to more trade shows, and buy larger email lists.”`, 
+        truth: `Pumping more leads into an undifferentiated business is like pouring water into a bucket with a massive hole in the bottom. If you do not have a clear, compelling reason for a buyer to choose you over the ten other vendors in their inbox, more leads will simply result in more rejections. You will exhaust your sales team by forcing them to chase price-shoppers who have zero intention of paying a premium.`, 
+        shift: `You do not have a lead generation problem; you have a lead conversion problem, driven by a lack of differentiation. Fix the strategy first, and you will find that you need far fewer leads to generate far more profit.` 
       }
     ]
   },
@@ -286,44 +458,244 @@ const bookData = [
     title: "Chapter 8: The Question Most Businesses Never Ask",
     type: "chapter",
     blocks: [
-      { type: "h1", text: "Chapter 8\nThe Question Most Businesses Never Ask" },
-      { type: "p", text: "Once a founder accepts they need a deliberate strategy, a new panic sets in. 'How do I choose? What if I pick the wrong market?'" },
-      { type: "p", text: "Founders are stuck because they look at their current machines and ask, 'Who will buy what I can already make?' Strong companies don't think this way. They ask two fundamental, inseparable questions:\n1. Where should we compete?\n2. How can we win there?" },
-      { type: "p", text: "These two choices are an inseparable, matched pair. Choosing a market without a way to win is a fantasy. Developing capabilities without a clear market leads to bankruptcy. Strategy is the exact intersection of those two elements." },
-      { type: "figure", title: "The Strategic Intersection", visual: "A Venn diagram with two overlapping circles. Left: 'Where to Play' (Market Opportunity). Right: 'How to Win' (Uncopyable Capability). The overlapping center is shaded dark and labelled 'True Brand Power.'", caption: "Choosing a market without a capability is a fantasy. Building a capability without a market is bankruptcy. Strategy is the overlap." },
-      { type: "h2", text: "The Evidence Trap" },
-      { type: "p", text: "When brainstorming 'Where' and 'How', accountants will ask: 'Do we have evidence that this will work?' Stop the meeting immediately." },
-      { type: "p", text: "There is no data about the future. Data is created in the past. If you demand evidence, your team will only pitch safe, boring, incremental ideas you have already done before." },
-      { type: "p", text: "Replace the demand for evidence with the most powerful question in strategy: 'What Would Have to Be True?' Ask: 'For this new market opportunity to actually work, what would have to be true about our customers, our internal capabilities, and our competitors?'" },
+      { type: "h1", text: `Chapter 8\nThe Question Most Businesses Never Ask` },
+      { type: "p", text: `Once a manufacturing founder experiences the Strategic Awakening—once they accept that they need to stop accumulating random orders and start building a deliberate strategy—a new kind of panic usually sets in.\nIt is the hangover after the awakening.\nThey look at their factory floor, their payroll of a hundred employees, and their current list of fifty different customers, and they freeze. They ask: "How do I actually choose? What if I pick the wrong market? What if I say no to my current customers, the new strategy fails, and I bankrupt the company?"` },
+      { type: "h2", text: `The Paralysis of Choice` },
+      { type: "p", text: `Consider a founder named Sunil, who runs an aluminium high-pressure die-casting unit in Manesar. The heat from his furnaces is intense, and so is the financial pressure.\nSunil has read the writing on the wall. He knows his Peanut Butter Business model—making castings for two-wheelers, home appliances, and random industrial pumps—is killing his margins. He is exhausted from the daily chaos of endless tool changeovers. He wants to specialise. He wants to build a true brand.\nBut when he sits down in his cabin to plan his future, he is paralysed by the options.` },
+      { type: "p", text: `If he focuses entirely on the two-wheeler market, the volumes are massive, but the OEMs squeeze him for every paisa. He knows that game is a race to the bottom. If he focuses on home appliances, the designs change too frequently, rendering his expensive moulds obsolete. If he looks at a premium market like aerospace or defence, he realises his current machines cannot meet the stringent porosity standards.` },
+      { type: "p", text: `Sunil is stuck because he is looking at his business backwards. He is looking at his current machines, his current capabilities, and his current staff, and asking, "Who will buy what I can already make?"` },
+      { type: "p", text: `Strong companies do not think this way. Instead of looking at their current capacity and trying to find a market to absorb it, they ask two fundamental, inseparable questions:\n1. Where should we compete?\n2. How can we win there?` },
+      { type: "h2", text: `The Inseparable Pair` },
+      { type: "p", text: `These two questions are the beating heart of business strategy. You cannot answer one without the other.\nChoosing a market without a way to win leads to failure.\nIf Sunil decides to target the highly lucrative electric vehicle (EV) battery housing market (his "Where"), but he has no unique engineering advantage over the massive, established players already dominating that space (his "How to win"), he will get crushed. He is picking a fight he is not equipped to win.` },
+      { type: "p", text: `Developing capabilities without a clear market leads to wasted effort.\nOn the flip side, if Sunil spends ten crores buying state-of-the-art, vacuum-assisted die-casting machines to eliminate all microscopic porosity in his parts (his "How to win"), but he continues selling to low-budget agricultural pump manufacturers who do not care about porosity (his "Where"), he will bankrupt himself. He has built an incredibly expensive capability for a market that refuses to pay for it.` },
+      { type: "p", text: `Strategy is the exact intersection of those two elements. Strategy is the perfect match between a specific market opportunity and an unfair advantage.` },
       
+      { type: "figure", title: "Illustration 9: The Strategic Intersection", visual: "A classic Venn diagram with two overlapping circles. Left Circle: \"Where to Play\" (Market Opportunity). Right Circle: \"How to Win\" (Uncopyable Capability). Center Overlap: The overlapping section should be shaded dark and labelled \"True Brand Power.\"", caption: "Choosing a market without a capability is a fantasy. Building a capability without a market is bankruptcy. Strategy is the overlap." },
+
+      { type: "h2", text: `Guardrail #1: The Lock & Load Error` },
+      { type: "p", text: `When founders finally see these two questions, they almost always make a critical, expensive mistake.\nThey treat them as a sequential checklist. They look at the market, pick a high-growth niche like EV components, "lock in" that decision, and then try to figure out how to win there.\nThis is the Lock & Load Error (also known as the Pervasive Sequencing Error).` },
+      { type: "p", text: `If you lock in your "Where" without simultaneously designing a distinctive "How", you will simply end up being a generic, commoditised player in a new, crowded market. You are jumping out of one Peanut Butter Business and straight into another. You might catch a temporary wave of growth because the industry is expanding, but you will have zero pricing power.` },
+      { type: "p", text: `These two choices are an inseparable, matched pair. You must constantly toggle back and forth between them.\nYou say, "What if we play in the EV space? Okay, how would we win there? Well, we don't have the scale to compete on price, but we could win by offering ultra-lightweight alloys. Do we have the technical capability for that? No." If you pick a "Where to Play" but cannot find a realistic "How to Win," you must throw out the "Where" and start over. They have to fit together perfectly.` },
+      { type: "h2", text: `Guardrail #2: The Evidence Trap` },
+      { type: "p", text: `When you and your leadership team begin brainstorming these matched pairs of Where and How, the engineers and accountants in the room will naturally become uncomfortable. Someone will eventually ask: "Do we have evidence that this will work? Can the accounts team run the data to prove this is a good idea before we commit?"\nStop the meeting immediately.` },
+      { type: "p", text: `Demanding "evidence" for a new strategic possibility triggers a massive analytical blunder. It is the false belief that you can analyse past data to prove a future that has not happened yet.\nThere is no data about the future. Data, by definition, is created in the past.` },
+      { type: "p", text: `If you demand evidence from your team, they will only pitch safe, boring, incremental ideas that you have already done before, because that is the only thing they have data for. You cannot build a breakout brand by looking in the rearview mirror.\nTo break this habit, replace the demand for evidence with the most powerful question in strategy: "What Would Have to Be True?"` },
+      { type: "p", text: `When someone pitches a wild new strategy, do not ask if the idea is "good" or "bad." Do not ask for proof. Ask: "For this new market opportunity to actually work, what would have to be true about our customers, our internal capabilities, and our competitors?"\nThis question magically diffuses boardroom arguments. It shifts your brain from arguing about past data to deliberately designing future logic.` },
+
+      { type: "p", text: `The Founder Pushback: The Analytical Paralysis\nBecause manufacturing founders are usually engineers by trade, they are deeply uncomfortable with ambiguity. They want guarantees. Here are the two most common excuses founders use to avoid making a strategic choice, and the brutal truth behind them.` },
+      { type: "pushback", 
+        myth: `“I cannot make a strategic pivot until I have more data. I need to hire a market research firm to guarantee that this new niche will be profitable.”`, 
+        truth: `You are using "research" as a stalling tactic because you are afraid to make a choice. A market research firm can tell you the size of an industry, but they cannot tell you if your specific company has the grit and capability to win there. Strategy is not a mathematical equation to be solved; it is an informed bet to be made.`, 
+        shift: `You will never have 100% certainty. By the time a market is completely proven and heavily documented with data, it is already saturated with competitors. You must learn to act on 70% certainty and an unshakeable belief in your newly designed "How to Win."` 
+      },
+      { type: "pushback", 
+        myth: `“What is the point of figuring out a 'How to Win'? The moment I discover a profitable niche, my competitors will just buy the same machines and copy me.”`, 
+        truth: `If your strategy can be copied simply by writing a cheque to a machine tool builder, you do not have a strategy. You just have capital expenditure. A true "How to Win" is built on complex, interlocking activities—your company culture, your proprietary processes, your deep domain expertise, and your customer integration—that a competitor cannot easily replicate.`, 
+        shift: `Stop building advantages based on what you buy, and start building advantages based on how you operate and think.` 
+      },
+
+      { type: "p", text: `Worksheet: Where Might We Win?\nAt this stage, do not try to prove anything. Do not call your accountant or check your bank balance for "evidence." This exercise is about exploring strategic possibilities using the matched pair of Where and How.\nThink of three distinct, highly focused markets you could dominate if you dedicated your entire factory to them. For each opportunity, fill in the matrix.` },
       { type: "worksheet", 
-        id: "ws-where-to-win",
-        title: "Worksheet: Where Might We Win?",
-        description: "Think of three distinct, highly focused markets you could dominate if you dedicated your entire factory to them. Don't ask for evidence; ask what would have to be true.",
+        id: "ws-where-to-win-2",
+        title: "Where Might We Win?",
+        description: "",
         questions: [
-          "Opportunity 1: Where to Play? | How to Win? | What Would Have to Be True?",
-          "Opportunity 2: Where to Play? | How to Win? | What Would Have to Be True?",
-          "Opportunity 3: Where to Play? | How to Win? | What Would Have to Be True?",
-          "Analysis: Are the things that 'must be true' within your ability to build, or do they rely on luck?"
+          `1. Where to Play (Market Opportunity 1) | How to Win (Potential Advantage) | What Would Have to Be True?`,
+          `2. Where to Play (Market Opportunity 2) | How to Win (Potential Advantage) | What Would Have to Be True?`,
+          `3. Where to Play (Market Opportunity 3) | How to Win (Potential Advantage) | What Would Have to Be True?`
         ]
-      }
+      },
+      { type: "p", text: `The Diagnosis:\nLook closely at the third column: What Would Have to Be True? This column is your new strategic roadmap.\nIf you look at an opportunity and realise that the things that "must be true" are entirely outside of your control (like a sudden change in government policy, or hoping a massive competitor suddenly goes bankrupt), drop that opportunity immediately. Focus only on the markets where you can actively build the conditions for victory.` }
     ]
   },
   {
-    id: "conclusion",
-    title: "Conclusion: The Beginning of Strategy",
+    id: "ch9",
+    title: "Chapter 9: The Beginning of Strategy",
     type: "chapter",
     blocks: [
-      { type: "h1", text: "Chapter 9\nThe Beginning of Strategy" },
-      { type: "p", text: "Walk out of your office right now and stand on your factory floor. Look at the specific parts coming off the line. Ask yourself: Who are these parts actually for? Are these machines actively building a highly profitable, defensible reputation, or are we just renting out our spindle hours to the lowest bidder?" },
-      { type: "p", text: "Most manufacturing founders spend their entire lives trapped in the operational weeds, blind to the structural reality of their own business. They work incredibly hard, yet they remain entirely invisible to the market." },
-      { type: "figure", title: "The Strategic Moat", visual: "A highly complex, specialized industrial part (like a medical wiring harness or an aerospace bracket) resting safely inside a heavy, impenetrable medieval fortress wall.", caption: "True strategy doesn't just win you a premium order; it builds an uncopyable fortress around your margins." },
-      { type: "p", text: "They believe strategy is a luxury reserved for massive multinational corporations. In reality, strategy begins with something much simpler, and much harder. Strategy begins with better questions." },
-      { type: "p", text: "It begins with the courage to stop accepting every drawing that comes across your desk. It begins with the profound, terrifying realisation that you cannot be everything to everyone." },
-      { type: "quote", text: "When you decide not to quote for a job because it falls outside your new 'Where to Play' criteria, that is strategy. When you refuse to drop your price to match a cheap competitor because you know your 'How to Win' delivers uncopyable value, that is strategy." },
-      { type: "h2", text: "The Next Challenge" },
-      { type: "p", text: "If you have completed the worksheets in this book, you have already taken the hardest step. You have diagnosed the exact structural flaws in your business model." },
-      { type: "p", text: "The era of accumulating random orders is over. It is time to make choices. It is time to start winning." }
+      { type: "part", text: `Conclusion` },
+      { type: "h1", text: `Chapter 9\nThe Beginning of Strategy` },
+      { type: "p", text: `Walk out of your office right now and stand on your factory floor.\nListen to the rhythmic thud of the power presses. Listen to the high-pitched whine of the CNC turning centres. Smell the sharp, metallic tang of the cutting fluid. Watch your operators load heavy raw material into the hoppers. Watch the dispatch trucks backing into the loading bay.` },
+      { type: "p", text: `Before you read this book, you likely looked at this exact scene and saw operational effort. You saw a group of hardworking people operating expensive machinery to get orders out the door. You saw the daily, exhausting grind of survival and accumulation.\nNow, look closer. Look at your business through the lens of strategy.\nLook at the specific parts coming off the line. Look at the labels on the dispatch crates. Ask yourself: Who are these parts actually for? Why are we making them? Are these machines actively building a highly profitable, defensible reputation, or are we just renting out our spindle hours to the lowest bidder?` },
+      { type: "p", text: `Most manufacturing founders spend their entire lives trapped in the operational weeds, blind to the structural reality of their own business. They remain the 18-Hour Founder, exhausting themselves to keep a chaotic Peanut Butter Business running, slowly watching their margins erode in the Commodity Trap. They work incredibly hard, yet they remain entirely invisible to the market.` },
+      { type: "p", text: `They believe that "strategy" is a luxury reserved for massive multinational corporations with wood-panelled boardrooms and expensive consultants. They believe strategy begins with writing a fifty-page business plan, running complex financial models, or making a massive, risky capital expenditure.` },
+      { type: "p", text: `In reality, strategy begins with something much simpler, and much harder.\nStrategy begins with better questions.` },
+      { type: "p", text: `It begins with the courage to stop accepting every drawing that comes across your desk. It begins with the discipline to look at a demanding, low-margin customer and politely say, "We are no longer the right fit for your needs." It begins with the profound, terrifying realisation that you cannot be everything to everyone.` },
+      { type: "h2", text: `The Illusion of the Grand Plan` },
+      { type: "p", text: `Strategy is not a document that sits in a drawer. Strategy is a living, breathing set of daily choices.` },
+      
+      { type: "figure", title: "Image 15: The Strategic Moat", visual: "A highly complex, specialized industrial part (like a medical wiring harness or an aerospace bracket) resting safely inside a heavy, impenetrable medieval fortress wall.", caption: "True strategy doesn't just win you a premium order; it builds an uncopyable fortress around your margins." },
+
+      { type: "p", text: `When you decide not to quote for a job because it falls outside your new "Where to Play" criteria, that is strategy. When you refuse to drop your price to match a cheap competitor because you know your "How to Win" delivers uncopyable value, that is strategy.\nYou do not need a perfect plan to start. You simply need to stop making the unforced errors that keep you commoditised. You need to stop asking for "evidence" about the future, and start asking, "What would have to be true?"` },
+
+      { type: "p", text: `The Founder Pushback: The "Someday" Myth\nThe hardest part of reading a book like this is closing it and actually changing how you run your company on Monday morning. Because change is difficult, founders often invent sophisticated excuses to delay it. Here are the two final excuses founders use to avoid making strategic choices, and the brutal truth behind them.` },
+      { type: "pushback", 
+        myth: `“This is a brilliant framework, but the timing is wrong. The economy is tough right now. I cannot afford to turn away bad revenue until the market improves.”`, 
+        truth: `A tough economy is exactly when commodities die and brands win. In a booming market, even bad businesses make money because demand outstrips supply. But in a tight economy, purchasing managers ruthlessly cull their generic vendors. If you wait for the "perfect time" to build a strategic advantage, you will be crushed by competitors who used the downturn to sharpen their focus.`, 
+        shift: `There is never a convenient time to undergo a Strategic Awakening. You must fix the roof while it is raining, because if you wait for the sun to come out, you will have already drowned.` 
+      },
+      { type: "pushback", 
+        myth: `“I will start focusing on strategy and brand once we hit ₹50 Crore in revenue. Right now, we just need to hustle and get our numbers up.”`, 
+        truth: `What gets you to ₹10 Crore is the exact thing that prevents you from reaching ₹50 Crore. Hustle, accumulation, and sheer willpower do not scale. If you try to force a Peanut Butter Business to ₹50 Crore, the operational complexity will cause the business to collapse under its own weight.`, 
+        shift: `Scale is the reward for focus, not the prerequisite for it. You do not wait until you are big to become strategic; you become strategic so that you can become big.` 
+      },
+
+      { type: "h2", text: `The Next Challenge` },
+      { type: "p", text: `If you have completed the worksheets in this book, you have already taken the hardest step. You have diagnosed the exact structural flaws in your business model. You understand that your world-class quality and your on-time delivery are just table stakes. You understand that true brand equity in the manufacturing sector comes from undeniable, highly focused capability.\nYou have begun to explore the possibilities of where you might play and how you might win.\nBut once you experience this strategic awakening, a massive new challenge immediately appears on the horizon.` },
+      { type: "p", text: `Looking at a matrix of possibilities is one thing. Actually transforming your factory floor, your sales team, and your entire corporate culture to dominate a specific niche is another.\nIf you decide to focus on aerospace, or medical devices, or specialised export markets, you will quickly realise that the competitors already operating in those spaces are not going to simply step aside and let you win.\nFurthermore, if you do find a highly profitable niche, what is stopping the generalist down the street from looking at your success, buying the exact same machines you have, undercutting your price by 5%, and dragging you right back into the Commodity Trap?` },
+      { type: "p", text: `To survive in the next phase of your growth, you cannot just choose a market. You have to build an impenetrable fortress around it.\nHow do you test which of your market opportunities are truly worth pursuing, and which are deadly traps in disguise?\nHow do you align your shop floor operations, your hiring practices, and your capital investments with your new strategic goals?\nAnd most importantly, how do successful manufacturing companies build structural, defensive moats that competitors cannot easily copy, even if they have more money?` },
+      { type: "p", text: `Identifying your lack of strategy was the purpose of this book.\nActually designing and executing a winning strategy is the subject of the next one.` }
+    ]
+  },
+  {
+    id: "continue-journey",
+    title: "Continue the Journey",
+    type: "chapter",
+    blocks: [
+      { type: "h1", text: `Continue the Journey\nStop Planning, Start Winning` },
+      { type: "p", text: `How Manufacturing Businesses Make Strategic Choices Competitors Can’t Copy.` },
+      { type: "p", text: `In the upcoming sequel to Why Great Manufacturers Stay Invisible, we move from painful diagnosis to ruthless execution. You will learn the exact frameworks used by elite industrial manufacturers to build uncopyable advantages, command premium pricing, and dominate their chosen categories.` },
+      { type: "p", text: `The era of accumulating random orders is over. It is time to make choices. It is time to start winning.` }
+    ]
+  },
+  {
+    id: "appendix-a",
+    title: "Appendix A: Comprehensive Bibliography & References",
+    type: "chapter",
+    blocks: [
+      { type: "h1", text: `Appendix A\nComprehensive Bibliography & References` },
+      { type: "p", text: `The frameworks, psychological profiles, and strategic concepts presented in Why Great Manufacturers Stay Invisible synthesize decades of research in corporate strategy, B2B procurement, behavioral economics, and operations management. The composite case studies in this book are built upon the foundational theories of the following authors, researchers, and strategists.` },
+      { type: "h2", text: `I. Corporate Strategy & Competitive Positioning` },
+      { type: "p", text: `(The theoretical foundation for Where to Play, How to Win, and breaking the Efficiency Trap).` },
+      { type: "ul", items: [
+        `Porter, M. E. (1996). "What is Strategy?" Harvard Business Review.`,
+        `Lafley, A.G., & Martin, R. L. (2013). Playing to Win: How Strategy Really Works. Harvard Business Review Press.`,
+        `Rumelt, R. (2011). Good Strategy Bad Strategy: The Difference and Why It Matters. Crown Business.`,
+        `Zook, C. (2001). Profit from the Core: Growth Strategy in an Era of Turbulence. Harvard Business School Press.`,
+        `Skinner, W. (1974). "The Focused Factory." Harvard Business Review.`,
+        `Kim, W. C., & Mauborgne, R. (2005). Blue Ocean Strategy. Harvard Business School Press.`,
+        `Magretta, J. (2011). Understanding Michael Porter: The Essential Guide to Competition and Strategy. Harvard Business Review Press.`,
+        `Treacy, M., & Wiersema, F. (1995). The Discipline of Market Leaders: Choose Your Customers, Narrow Your Focus, Dominate Your Market. Addison-Wesley.`,
+        `Hamel, G., & Prahalad, C. K. (1990). "The Core Competence of the Corporation." Harvard Business Review.`,
+        `Mintzberg, H. (1994). The Rise and Fall of Strategic Planning. Free Press.`,
+        `Burgelman, R. A. (2002). Strategy is Destiny: How Strategy-Making Shapes a Company's Future. Free Press.`,
+        `Christensen, C. M. (1997). The Innovator's Dilemma. Harvard Business School Press.`,
+        `Martin, R. L. (2009). The Design of Business: Why Design Thinking is the Next Competitive Advantage. Harvard Business Press.`,
+        `McGrath, R. G. (2013). The End of Competitive Advantage. Harvard Business Review Press.`
+      ]},
+      { type: "h2", text: `II. Manufacturing Operations & The Theory of Constraints` },
+      { type: "p", text: `(The operational logic behind the Commodity Trap, setup taxes, and machine utilization).` },
+      { type: "ul", items: [
+        `Goldratt, E. M. (1984). The Goal: A Process of Ongoing Improvement. North River Press.`,
+        `Womack, J. P., Jones, D. T., & Roos, D. (1990). The Machine That Changed the World. Free Press.`,
+        `Skinner, W. (1969). "Manufacturing—Missing Link in Corporate Strategy." Harvard Business Review.`,
+        `Liker, J. K. (2004). The Toyota Way: 14 Management Principles from the World's Greatest Manufacturer. McGraw-Hill.`,
+        `Hayes, R. H., & Wheelwright, S. C. (1984). Restoring Our Competitive Edge: Competing Through Manufacturing. Wiley.`,
+        `Womack, J. P., & Jones, D. T. (1996). Lean Thinking: Banish Waste and Create Wealth in Your Corporation. Simon & Schuster.`,
+        `Goldratt, E. M. (1997). Critical Chain. North River Press.`,
+        `Iansiti, M., & Lien, R. (2001). "The Strategy-Operations Linkage." Harvard Business School Working Knowledge.`,
+        `Hopp, W. J., & Spearman, M. L. (2000). Factory Physics. McGraw-Hill.`,
+        `Spear, S., & Bowen, H. K. (1999). "Decoding the DNA of the Toyota Production System." Harvard Business Review.`
+      ]},
+      { type: "h2", text: `III. B2B Branding, Pricing, & The Procurement Reality` },
+      { type: "p", text: `(The mechanics of corporate buying behavior, value-based pricing, and escaping commoditization).` },
+      { type: "ul", items: [
+        `Levitt, T. (1980). "Marketing Success Through Differentiation—of Anything." Harvard Business Review.`,
+        `Kotler, P., & Pfoertsch, W. (2006). B2B Brand Management. Springer.`,
+        `Dixon, M., & Adamson, B. (2015). The Challenger Customer: Selling to the Hidden Influencer Who Can Multiply Your Results. Portfolio.`,
+        `Anderson, J. C., Narus, J. A., & van Rossum, W. (2006). "Customer Value Propositions in Business Markets." Harvard Business Review.`,
+        `Ries, A., & Trout, J. (2001). Positioning: The Battle for Your Mind. McGraw-Hill.`,
+        `Nagle, T. T., & Müller, G. (2017). The Strategy and Tactics of Pricing: A Guide to Growing More Profitably. Routledge.`,
+        `Rackham, N. (1988). SPIN Selling. McGraw-Hill.`,
+        `Webster, F. E., & Wind, Y. (1972). Organizational Buying Behavior. Prentice-Hall.`,
+        `Thull, J. (2010). Mastering the Complex Sale: How to Compete and Win When the Stakes are High!. Wiley.`,
+        `Keller, K. L. (1998). Strategic Brand Management. Prentice Hall.`,
+        `Macdivitt, H., & Wilkinson, C. (2011). Value-Based Pricing. McGraw-Hill.`,
+        `Liozu, S. M. (2015). The Pricing Journey: The Organizational Transformation Toward Pricing Excellence. Stanford Business Books.`,
+        `Kapferer, J.-N. (2008). The New Strategic Brand Management. Kogan Page.`,
+        `Binet, L., & Field, P. (2013). The Long and the Short of It: Balancing Short and Long-Term Marketing Strategies. IPA.`
+      ]},
+      { type: "h2", text: `IV. Founder Psychology, Scaling, & Decision Making` },
+      { type: "p", text: `(The behavioral economics behind the 18-Hour Founder, the "Evidence Trap," and organizational bottlenecks).` },
+      { type: "ul", items: [
+        `Gerber, M. E. (1995). The E-Myth Revisited: Why Most Small Businesses Don't Work and What to Do About It. HarperBusiness.`,
+        `Kahneman, D. (2011). Thinking, Fast and Slow. Farrar, Straus and Giroux. (Foundation for understanding the 'Evidence Trap' and analytical biases).`,
+        `Wasserman, N. (2012). The Founder's Dilemmas: Anticipating and Avoiding the Pitfalls That Can Sink a Startup. Princeton University Press.`,
+        `McKeown, G. (2014). Essentialism: The Disciplined Pursuit of Less. Crown Business.`,
+        `Harnish, V. (2014). Scaling Up: How a Few Companies Make It...and Why the Rest Don't. Gazelles Inc.`,
+        `Gino, F., & Pisano, G. P. (2011). "Why Leaders Don't Learn from Success." Harvard Business Review.`,
+        `Grove, A. S. (1983). High Output Management. Random House.`,
+        `Collins, J. (2001). Good to Great: Why Some Companies Make the Leap...And Others Don't. HarperBusiness.`,
+        `Wickman, G. (2011). Traction: Get a Grip on Your Business. BenBella Books.`,
+        `Goldsmith, M. (2007). What Got You Here Won't Get You There. Hyperion.`,
+        `Lencioni, P. (2002). The Five Dysfunctions of a Team. Jossey-Bass.`,
+        `Adner, R. (2012). The Wide Lens: What Successful Innovators See That Others Miss. Portfolio/Penguin.`
+      ]}
+    ]
+  },
+  {
+    id: "appendix-b",
+    title: "Appendix B: The Complete Illustration & Diagram Guide",
+    type: "chapter",
+    blocks: [
+      { type: "h1", text: `Appendix B\nThe Complete Illustration & Diagram Guide` },
+      { type: "p", text: `Visuals anchor abstract strategy into concrete reality. Place these diagrams at the exact moment a founder might feel overwhelmed by the text.` },
+      { type: "h2", text: `Part 1: The Hard Work Trap` },
+      { type: "p", text: `Illustration 1: The Founder Bottleneck (For Chapter 1)\nVisual: An hourglass or a funnel.\nDesign: At the top of the funnel, dozens of arrows are pouring in (labelled: Sales, Operations, HR, Purchasing, Quality). In the narrow, choked center of the hourglass is a single stick figure or icon labelled "The 18-Hour Founder." At the bottom, only a tiny trickle of progress is coming out.\nCaption: You cannot scale a business if every decision has to fit through one person’s brain.` },
+      { type: "p", text: `Illustration 2: The Growth Plateau (For Chapter 2)\nVisual: A simple line graph. The X-axis is "Time" and the Y-axis is "Revenue."\nDesign: The line starts low, climbs aggressively like a steep staircase (labelled: Stage 2: Hustle & Growth), and then abruptly flattens out into a stubborn, horizontal, slightly bumpy line (labelled: Stage 3: The Efficiency Plateau).\nCaption: Hard work gets you up the stairs. Only strategy breaks through the ceiling.` },
+      { type: "h2", text: `Part 2: The Invisibility Problem` },
+      { type: "p", text: `Illustration 3: The Peanut Butter Spread (For Chapter 3)\nVisual: Two side-by-side comparison graphics.\nLeft Side (The Generalist): A central circle (Your Factory) with 15 thin, weak arrows pointing outward in every direction to scattered dots. Label it: High Chaos, Low Margin.\nRight Side (The Specialist): The same factory circle, but with three massive, thick arrows pointing directly into a single, tightly clustered group of dots. Label it: High Focus, Premium Margin.` },
+      { type: "p", text: `Illustration 4: The Blended Margin Illusion (For Chapter 3)\nVisual: A simple pie chart or bar graph divided into two starkly contrasting sections.\nDesign: A small 20% slice colored deep green, labelled: The Core Niche (High Margin, Low Chaos). The massive 80% remaining slice is colored red or grey, labelled: The Distractions (Low Margin, High Chaos).\nCaption: Your good customers are subsidising the exhaustion caused by your bad customers.` },
+      { type: "p", text: `Illustration 5: The Value Pyramid (For Chapter 4)\nVisual: A three-tiered pyramid.\nDesign: The massive bottom tier is labelled "Operating Imperatives" (Quality, On-Time Delivery, ISO Certifications). The middle tier is labelled "Relationships" (History, Trust, Handshakes). The tiny, sharp point at the top is labelled "Strategic Advantage" (Uncopyable Capability, Deep Specialisation).\nCaption: Buyers expect the bottom, they tolerate the middle, but they only pay a premium for the top.` },
+      { type: "h2", text: `Part 3: What Brand Really Means in Manufacturing` },
+      { type: "p", text: `Illustration 6: The B2B Buying Brain (For Chapter 5)\nVisual: A weighing scale.\nDesign: On one side of the scale is a box labelled "Price." On the heavier side, tipping the scale entirely, is a massive anvil labelled "Risk of Failure (Getting Fired)."\nCaption: In consumer markets, buyers look for status. In industrial markets, buyers look for risk mitigation.` },
+      { type: "p", text: `Illustration 7: "The Dip" (For Chapter 6)\nVisual: A dual-line graph showing the painful transition of focusing.\nDesign: The first line (Revenue) takes a sharp, terrifying dip downward before slowly climbing back up. The second line (Profit Margin) starts low, but immediately begins climbing upward as the bad revenue is cut.\nCaption: Firing bad clients causes a temporary dip in revenue, but an immediate spike in sanity and pricing power.` },
+      { type: "h2", text: `Part 4: The Strategic Awakening` },
+      { type: "p", text: `Illustration 8: The Rainmaker Myth (For Chapter 7)\nVisual: A humorous but painful icon graphic.\nDesign: A sleek, high-tech Formula 1 steering wheel attached to a rusted, clunky farm tractor.\nCaption: Hiring an expensive VP of Sales to sell an unfocused, commoditised business is like putting an F1 driver in a tractor. The driver isn't the problem.` },
+      { type: "p", text: `Illustration 9: The Strategic Intersection (For Chapter 8)\nVisual: A classic Venn diagram with two overlapping circles.\nLeft Circle: "Where to Play" (Market Opportunity).\nRight Circle: "How to Win" (Uncopyable Capability).\nCenter Overlap: The overlapping section should be shaded dark and labelled "True Brand Power."\nCaption: Choosing a market without a capability is a fantasy. Building a capability without a market is bankruptcy. Strategy is the overlap.` },
+      { type: "p", text: `Image 10: The Sea of Sameness (For the Introduction)\nVisual Concept: A sprawling, isometric view of an industrial estate. There are dozens of identical factory sheds with identical smoke stacks. In the middle is one factory glowing or highlighted in a distinct color, representing the "Brand."\nCaption: Hard work makes you busy. A lack of strategy makes you invisible in a sea of capable competitors.` },
+      { type: "p", text: `Image 11: The Desk of Chaos (For Chapter 1: The 18-Hour Founder)\nVisual Concept: A photograph or stylized illustration of a founder's desk completely buried under a mountain of blueprints, raw material invoices, and RFQs. A line of employees is standing at the door waiting for approval, while the phone rings off the hook.\nCaption: If every decision has to cross your desk, your business has a hard ceiling on its growth.` },
+      { type: "p", text: `Image 12: The Capex Illusion (For Chapter 2: The Efficiency Trap)\nVisual Concept: A hyper-modern, multi-million-rupee 5-axis CNC machine wrapped in a giant red gift bow, with a massive bank loan document sitting next to it.\nCaption: If anyone with a bank loan can buy your competitive advantage, it is not an advantage. It is just expensive overhead.` },
+      { type: "p", text: `Image 13: The Spreadsheet Reality (For Chapter 4: The Commodity Trap)\nVisual Concept: A stark, zoomed-in view of an Excel spreadsheet. Row 14 simply says "Supplier A - ₹12.50." Row 15 says "Supplier B - ₹12.00." A red circle is drawn around the ₹12.00 price. All the history, quality, and legacy of the business are nowhere to be seen.\nCaption: To a corporate buyer with no clear differentiator, your life's work is just a row on a spreadsheet.` },
+      { type: "p", text: `Image 14: Paint on a Broken Engine (For Chapter 5: Brand is Not Marketing)\nVisual Concept: A rusty, clunky, disorganized mechanical engine. A hand holding a paintbrush is applying a coat of bright, glossy, expensive paint over the rust.\nCaption: A slick website and a new logo won't fix a broken, commoditized business model. Fix the engine before you paint the car.` },
+      { type: "p", text: `Image 15: The Strategic Moat (For Chapter 9: The Beginning of Strategy)\nVisual Concept: A highly complex, specialized industrial part (like a medical wiring harness or an aerospace bracket) resting safely inside a heavy, impenetrable medieval fortress wall.\nCaption: True strategy doesn't just win you a premium order; it builds an uncopyable fortress around your margins.` }
+    ]
+  },
+  {
+    id: "appendix-c",
+    title: "Appendix C: The Strategy Glossary",
+    type: "chapter",
+    blocks: [
+      { type: "h1", text: `Appendix C\nThe Strategy Glossary` },
+      { type: "p", text: `To change how your company operates, you and your leadership team must change how you speak. Introduce these terms into your boardroom to instantly shift the focus from operational survival to strategic design.` },
+      { type: "h2", text: `The 18-Hour Founder (The Hero Trap):` },
+      { type: "p", text: `A business structure where growth is entirely bottlenecked by the founder’s personal involvement, leading to exhaustion and a hard cap on revenue scale.` },
+      { type: "h2", text: `The Peanut Butter Business:` },
+      { type: "p", text: `A company that spreads its resources, engineering talent, and machine hours too thinly across dozens of unrelated industries, resulting in high operational chaos and zero market distinction.` },
+      { type: "h2", text: `The Commodity Trap:` },
+      { type: "p", text: `The highly vulnerable state of competing purely on price and delivery time because the market views your capabilities as completely interchangeable with your competitors.` },
+      { type: "h2", text: `Operating Imperative:` },
+      { type: "p", text: `The minimum standard required just to be invited to quote (e.g., good quality, on-time delivery, ISO certification). These are necessary to survive, but they are not strategic advantages.` },
+      { type: "h2", text: `Strategic Advantage:` },
+      { type: "p", text: `A specific, hard-to-copy capability that makes your company the undeniable, obvious choice for a specific type of buyer, allowing you to command premium pricing.` },
+      { type: "h2", text: `The Lock & Load Error (Pervasive Sequencing Error):` },
+      { type: "p", text: `The fatal mistake of choosing a market niche ("Where to Play") without simultaneously figuring out a unique capability to dominate it ("How to Win").` },
+      { type: "h2", text: `The Evidence Trap:` },
+      { type: "p", text: `The dangerous boardroom habit of demanding past data to prove that a future strategy will work. This trap limits companies to safe, commoditised ideas.` },
+      { type: "h2", text: `What Would Have to Be True? (WWHTBT):` },
+      { type: "p", text: `The ultimate strategic question. It replaces the demand for evidence and forces leadership teams to design the exact conditions required for a new strategy to succeed.` }
+    ]
+  },
+  {
+    id: "appendix-d",
+    title: "Appendix D: Recommended Reading",
+    type: "chapter",
+    blocks: [
+      { type: "h1", text: `Appendix D\nRecommended Reading` },
+      { type: "p", text: `This book serves as your wake-up call and diagnosis. If you wish to dive deeper into the academic and operational frameworks behind these concepts, the following books are highly recommended for manufacturing leaders:` },
+      { type: "p", text: `1. Playing to Win: How Strategy Really Works by A.G. Lafley and Roger L. Martin\nThe foundational text on the "Where to Play" and "How to Win" framework. This book will fundamentally change how you view corporate strategy and the "Lock & Load" error.` },
+      { type: "p", text: `2. The Goal: A Process of Ongoing Improvement by Eliyahu M. Goldratt\nA mandatory read for any factory owner. Written as a novel, it introduces the Theory of Constraints and will completely change how you view "idle machines" and shop-floor efficiency.` },
+      { type: "p", text: `3. Positioning: The Battle for Your Mind by Al Ries and Jack Trout\nThe classic manual on how to establish a clear, undeniable identity in a crowded, noisy, commoditised marketplace.` }
     ]
   }
 ];
@@ -414,7 +786,7 @@ const InteractiveWorksheet = ({ id, title, description, questions }) => {
   const [answers, setAnswers] = useState({});
 
   useEffect(() => {
-    const saved = localStorage.getItem(`worksheet-${id}`);
+    const saved = localStorage.getItem(`worksheet-wg-${id}`);
     if (saved) {
       setAnswers(JSON.parse(saved));
     }
@@ -423,7 +795,7 @@ const InteractiveWorksheet = ({ id, title, description, questions }) => {
   const handleChange = (qIndex, value) => {
     const newAnswers = { ...answers, [qIndex]: value };
     setAnswers(newAnswers);
-    localStorage.setItem(`worksheet-${id}`, JSON.stringify(newAnswers));
+    localStorage.setItem(`worksheet-wg-${id}`, JSON.stringify(newAnswers));
   };
 
   return (
@@ -431,17 +803,17 @@ const InteractiveWorksheet = ({ id, title, description, questions }) => {
       <div className="mb-8">
         <span className="inline-block px-3 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-400 text-xs font-bold uppercase tracking-widest rounded mb-4">Strategic Exercise</span>
         <h3 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-3 font-serif">{title}</h3>
-        <p className="text-slate-600 dark:text-slate-400">{description}</p>
+        {description && <p className="text-slate-600 dark:text-slate-400 whitespace-pre-line">{description}</p>}
       </div>
       
       <div className="space-y-8">
         {questions.map((q, idx) => (
           <div key={idx}>
             <label className="block text-slate-800 dark:text-slate-200 font-medium mb-3">
-              {idx + 1}. {q}
+              {q}
             </label>
             <textarea 
-              className="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 rounded-lg p-4 text-slate-800 dark:text-slate-200 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all outline-none resize-y min-h-[100px]"
+              className="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 rounded-lg p-4 text-slate-800 dark:text-slate-200 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all outline-none resize-y min-h-[80px]"
               placeholder="Type your honest assessment here... (Progress autosaves)"
               value={answers[idx] || ''}
               onChange={(e) => handleChange(idx, e.target.value)}
@@ -467,12 +839,11 @@ export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [theme, setTheme] = useState('light');
 
-  // Load saved progress and theme on mount
   useEffect(() => {
-    const savedChapter = localStorage.getItem('ebook-progress');
+    const savedChapter = localStorage.getItem('ebook-wg-progress');
     if (savedChapter) setCurrentChapterIdx(parseInt(savedChapter, 10));
     
-    const savedTheme = localStorage.getItem('ebook-theme');
+    const savedTheme = localStorage.getItem('ebook-wg-theme');
     if (savedTheme) {
       setTheme(savedTheme);
       if (savedTheme === 'dark') document.documentElement.classList.add('dark');
@@ -485,7 +856,7 @@ export default function App() {
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
-    localStorage.setItem('ebook-theme', newTheme);
+    localStorage.setItem('ebook-wg-theme', newTheme);
     if (newTheme === 'dark') {
       document.documentElement.classList.add('dark');
     } else {
@@ -495,7 +866,7 @@ export default function App() {
 
   const goToChapter = (idx) => {
     setCurrentChapterIdx(idx);
-    localStorage.setItem('ebook-progress', idx.toString());
+    localStorage.setItem('ebook-wg-progress', idx.toString());
     setSidebarOpen(false);
     window.scrollTo(0, 0);
   };
@@ -510,7 +881,6 @@ export default function App() {
   return (
     <div className={`min-h-screen flex transition-colors duration-300 ${theme === 'dark' ? 'bg-slate-900 text-slate-300' : 'bg-white text-slate-800'}`}>
       
-      {/* SIDEBAR OVERLAY FOR MOBILE */}
       {sidebarOpen && (
         <div 
           className="fixed inset-0 bg-black/50 z-40 lg:hidden"
@@ -518,12 +888,11 @@ export default function App() {
         />
       )}
 
-      {/* SIDEBAR NAVIGATION */}
       <aside className={`fixed lg:sticky top-0 h-screen w-80 bg-slate-100 dark:bg-slate-950 border-r border-slate-200 dark:border-slate-800 z-50 transition-transform duration-300 flex flex-col ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
         <div className="p-6 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center">
           <div>
             <h2 className="font-bold text-lg text-slate-900 dark:text-white leading-tight font-serif">Why Great Manufacturers<br/>Stay Invisible</h2>
-            <p className="text-xs text-amber-600 dark:text-amber-500 mt-1 uppercase tracking-widest font-semibold">Field Manual</p>
+            <p className="text-xs text-amber-600 dark:text-amber-500 mt-1 uppercase tracking-widest font-semibold">Strategic Design</p>
           </div>
           <button onClick={() => setSidebarOpen(false)} className="lg:hidden p-2 text-slate-500">
             <X size={20} />
@@ -559,10 +928,7 @@ export default function App() {
         </div>
       </aside>
 
-      {/* MAIN CONTENT AREA */}
       <main className="flex-1 min-w-0 flex flex-col h-screen overflow-hidden">
-        
-        {/* TOP BAR */}
         <header className="flex-none h-16 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md sticky top-0 z-30 flex items-center justify-between px-4 lg:px-8">
           <div className="flex items-center gap-4">
             <button 
@@ -584,7 +950,6 @@ export default function App() {
           </button>
         </header>
 
-        {/* READER AREA */}
         <div className="flex-1 overflow-y-auto scroll-smooth pb-32">
           <article className="max-w-3xl mx-auto px-6 py-12 md:py-20">
             {chapter.blocks?.map((block, idx) => {
@@ -615,7 +980,7 @@ export default function App() {
                   );
                 case 'p':
                   return (
-                    <p key={idx} className="text-lg md:text-xl leading-relaxed mb-6 font-serif text-slate-700 dark:text-slate-300">
+                    <p key={idx} className="text-lg md:text-xl leading-relaxed mb-6 font-serif text-slate-700 dark:text-slate-300 whitespace-pre-line">
                       {block.text}
                     </p>
                   );
@@ -647,7 +1012,6 @@ export default function App() {
               }
             })}
 
-            {/* NAVIGATION FOOTER */}
             <div className="mt-20 pt-10 border-t border-slate-200 dark:border-slate-800 flex justify-between items-center">
               {currentChapterIdx > 1 ? (
                 <button 
